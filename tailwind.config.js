@@ -19,6 +19,9 @@ module.exports = {
       animation: {
         'spin-slow': 'wiggle 3s linear infinite',
       },
+      fontFamily: {
+        gotham: ['Gotham'],
+      },
     },
     screens: {
       huge: '1920px',
