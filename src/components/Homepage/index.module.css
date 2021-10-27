@@ -9,7 +9,7 @@
 
 .value {
   @apply px-4 mt-0.5;
-  @apply text-6xl;
+  @apply text-8xl;
 
   font-family: 'Courier New', Courier, monospace;
 }

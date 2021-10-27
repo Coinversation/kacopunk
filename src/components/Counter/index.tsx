@@ -57,6 +57,17 @@ const Counter = ({
       <button className={styles.button} onClick={onIncrementIfOdd}>
         Add If Odd
       </button>
+      <div className="space-x-4">
+        <div>1</div>
+        <div>2</div>
+      </div>
+      <button className="transform hover:translate-x-10">Hover me</button>
+      <button className="transform hover:scale-110 motion-reduce:hover:scale-1 ">
+        Hover me
+      </button>
+      <button className="transform origin-left motion-safe:hover:scale-x-110">
+        Hover me
+      </button>
     </div>
   </div>
 );

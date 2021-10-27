@@ -10,10 +10,25 @@ module.exports = {
         light: '#f8f9fa',
         dark: '#343a40',
       },
+      keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' },
+        },
+      },
+      animation: {
+        'spin-slow': 'wiggle 3s linear infinite',
+      },
+    },
+    screens: {
+      huge: '1920px',
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      backgroundColor: ['active'],
+      opacity: ['active', 'disabled'],
+    },
   },
   plugins: [],
 };
