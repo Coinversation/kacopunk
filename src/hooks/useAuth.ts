@@ -11,15 +11,13 @@ import {
 } from '@web3-react/walletconnect-connector';
 import { ConnectorNames, connectorLocalStorageKey } from '@kaco/uikit';
 
-const connectorsByName: { [connectorName in ConnectorNames]: any } = {
-  [ConnectorNames.Injected]: 'injected',
-  [ConnectorNames.WalletConnect]: 'walletconnect',
-  [ConnectorNames.BSC]: 'bscConnector',
-};
+import { connectorsByName } from 'utils/web3React';
+import { setupNetwork } from 'utils/wallet';
+import useToast from 'hooks/useToast';
 
 const useAuth = () => {
   const { activate, deactivate } = useWeb3React();
-  const toastError = console.error;
+  const { toastError } = useToast();
 
   const login = useCallback(
     (connectorID: ConnectorNames) => {
@@ -27,8 +25,7 @@ const useAuth = () => {
       if (connector) {
         activate(connector, async (error: Error) => {
           if (error instanceof UnsupportedChainIdError) {
-            // const hasSetup = await setupNetwork();
-            const hasSetup = false;
+            const hasSetup = await setupNetwork();
             if (hasSetup) {
               activate(connector);
             }
@@ -64,7 +61,6 @@ const useAuth = () => {
   );
 
   const logout = useCallback(() => {
-    // dispatch(profileClear());
     deactivate();
     // This localStorage key is set by @web3-react/walletconnect-connector
     if (window.localStorage.getItem('walletconnect')) {

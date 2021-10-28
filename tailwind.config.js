@@ -31,6 +31,7 @@ module.exports = {
     extend: {
       backgroundColor: ['active'],
       opacity: ['active', 'disabled'],
+      animation: ['responsive', 'motion-safe', 'motion-reduce'],
     },
   },
   plugins: [],
