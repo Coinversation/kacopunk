@@ -1,0 +1,53 @@
+.fade-enter .btn {
+  opacity: 0%;
+  transform: translateX(-100%);
+}
+
+.fade-enter-active .btn {
+  opacity: 100%;
+  transform: translateX(0%);
+}
+
+.fade-exit .btn {
+  opacity: 100%;
+  transform: translateX(0%);
+}
+
+.fade-exit-active .btn {
+  opacity: 0%;
+  transform: translateX(100%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fade-enter-active .btn,
+  .fade-exit-active .btn {
+    transition: opacity 500ms, transform 500ms;
+  }
+}
+
+.item-enter {
+  opacity: 0%;
+  transform: translateX(-100%);
+}
+
+.item-enter-active {
+  opacity: 100%;
+  transform: translateX(0%);
+}
+
+.item-exit {
+  opacity: 100%;
+  transform: translateX(0%);
+}
+
+.item-exit-active {
+  opacity: 0%;
+  transform: translateX(100%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .item-enter-active,
+  .item-exit-active {
+    transition: opacity 500ms, transform 500ms;
+  }
+}

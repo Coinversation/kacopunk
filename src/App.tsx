@@ -6,6 +6,9 @@ import { Button } from '@kaco/uikit';
 import { ConnectWalletButton } from 'components';
 import './App.css';
 
+import Animation from 'components/Animation';
+import Animation2 from 'components/Animation2';
+
 const App = (): JSX.Element => {
   return (
     <Layout>
@@ -19,6 +22,8 @@ const App = (): JSX.Element => {
           <button className="transform motion-safe:hover:animate-spin">
             Hover me
           </button>
+          <Animation />
+          <Animation2 />
         </Route>
       </Switch>
     </Layout>

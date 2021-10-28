@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import classnames from 'classnames';
 
 const Container = ({
   width,
@@ -11,7 +10,7 @@ const Container = ({
   children: React.ReactNode;
   [other: string]: unknown;
 }): JSX.Element => (
-  <div {...otherProps} className={classnames(otherProps.className as string)}>
+  <div {...otherProps}>
     {children}
   </div>
 );
