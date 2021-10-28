@@ -1,23 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Container = ({
-  width,
-  children,
-  ...otherProps
-}: {
-  width?: number;
-  children: React.ReactNode;
-  [other: string]: unknown;
-}): JSX.Element => (
-  <div {...otherProps}>
-    {children}
-  </div>
-);
-
-const ContainerWarp = styled(Container)`
-  width: ${({ width }) => `${width || 1176}px`};
+const ContainerWarp = styled.div<{ width: number }>`
+  width: ${({ width }) => `${width}px`};
   margin: auto;
 `;
 
-export default ContainerWarp;
+const Container = ({
+  width = 1100,
+  children,
+  className,
+}: {
+  width?: number;
+  children: React.ReactNode;
+  className?: string;
+}): JSX.Element => (
+  <ContainerWarp width={width} className={className}>
+    {children}
+  </ContainerWarp>
+);
+
+export default Container;

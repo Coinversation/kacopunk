@@ -1,6 +1,7 @@
 import React from 'react';
-import { Button, useWalletModal } from '@kaco/uikit';
+import { useWalletModal } from '@kaco/uikit';
 import useAuth from 'hooks/useAuth';
+import Button from './index';
 
 const ConnectWalletButton = props => {
   const { login, logout } = useAuth();

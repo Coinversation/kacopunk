@@ -1,50 +1,51 @@
-import Container from 'components/Container';
-import { Button } from '@kaco/uikit';
-import styles from './banner.module.css';
+import styled from 'styled-components';
 
-const Banner = () => (
-  <section>
-    <Container className={styles.banner}>
+import Button from 'components/Button';
+import Container from 'components/Container';
+import AnimateRandomPhoto from './AnimateRandomPhoto';
+
+const BannerWarp = styled.div`
+  padding: 100px 0;
+  .caption {
+    background: linear-gradient(
+      0deg,
+      #f59fee 0%,
+      #b8c1c0 25%,
+      #65c0e0 50%,
+      #f59fee 75%,
+      #81c1d9 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+`;
+
+const Banner = ({ photos }): JSX.Element => (
+  <BannerWarp className="font-gotham">
+    <Container className="flex items-center justify-between">
       <div>
-        <h1 className={styles.caption}>
+        <h1 className="text-6xl mb-6 caption">
           Have you ever
           <br />
           Heard of
         </h1>
-        <p className={styles.introduce}>
+        <p className="text-sm text-secondaryTextColor leading-loose">
           2021, the first tarsiers were created to simply create some fun in the
           <br />
           drab world of defi. Of course, following the logic of evolution, they
           <br />
           may be endowed with special functions in the future
         </p>
-        <div className={styles.action}>
+        <div className="space-x-4 mt-10">
           <Button>Mint &gt;&gt;</Button>
-          <Button>View More &gt;&gt;</Button>
+          <Button type="outline">View More &gt;&gt;</Button>
         </div>
       </div>
       <div>
-        <ul className={styles.chunk}>
-          <li className={styles.piece}>1</li>
-          <li className={styles.piece}>1</li>
-          <li className={styles.piece}>1</li>
-          <li className={styles.piece}>1</li>
-          <li className={styles.piece}>1</li>
-          <li className={styles.piece}>1</li>
-          <li className={styles.piece}>1</li>
-          <li className={styles.piece}>1</li>
-          <li className={styles.piece}>1</li>
-          <li className={styles.piece}>1</li>
-          <li className={styles.piece}>1</li>
-          <li className={styles.piece}>1</li>
-          <li className={styles.piece}>1</li>
-          <li className={styles.piece}>1</li>
-          <li className={styles.piece}>1</li>
-          <li className={styles.piece}>1</li>
-        </ul>
+        <AnimateRandomPhoto photos={photos} />
       </div>
     </Container>
-  </section>
+  </BannerWarp>
 );
 
 export default Banner;

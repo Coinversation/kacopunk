@@ -5,10 +5,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#1890ff',
-        secondary: '#40a9ff',
-        light: '#f8f9fa',
-        dark: '#343a40',
+        primary: '#1BD3D5',
+        secondary: '#F59FEE',
+        textColor: '#263131',
+        secondaryTextColor: '#5B6F6F',
       },
       keyframes: {
         wiggle: {
