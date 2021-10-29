@@ -1,5 +1,5 @@
 import React from 'react';
-import { Footer as FooterComponent } from '../../components';
+import FooterComponent from 'components/Footer';
 
 const Footer = (): JSX.Element => {
   return <FooterComponent />;

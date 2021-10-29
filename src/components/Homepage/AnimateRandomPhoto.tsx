@@ -1,30 +1,46 @@
 import React from 'react';
-import { shallowEqual } from 'react-redux';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
 
-interface Photo {
-  id: number;
-  url: string;
-}
-
-const AnimateRandomPhotoWarp = styled(TransitionGroup)`
+const AnimateRandomPhotoWarp = styled.div`
   img {
-    width: 120px;
-    height: 120px;
+    width: 100%;
+    height: 100%;
+  }
+  .fade-enter {
+    opacity: 0%;
+  }
+  .fade-enter-active {
+    opacity: 100%;
+  }
+  .fade-exit {
+    opacity: 100%;
+  }
+  .fade-exit-active {
+    opacity: 0%;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .fade-enter-active,
+    .fade-exit-active {
+      transition: opacity 0.5s;
+    }
   }
 `;
 
-const AnimateRandomPhoto = ({ photos }: { photos: Photo[] }) => {
+const AnimateRandomPhoto = ({ photos }) => {
   return (
     <AnimateRandomPhotoWarp className="grid grid-cols-4 grid-rows-3">
-      {photos.map(({ id, url }) => (
-        <CSSTransition key={id} timeout={500} classNames="item">
-          <img src={url} alt="" className="w-8 h-8" />
-        </CSSTransition>
+      {photos.map(url => (
+        <div className="w-32 h-32 relative">
+          <SwitchTransition mode="out-in">
+            <CSSTransition key={url} timeout={500} classNames="fade">
+              <img className="absolute left-0 top-0" src={url} alt="" />
+            </CSSTransition>
+          </SwitchTransition>
+        </div>
       ))}
     </AnimateRandomPhotoWarp>
   );
 };
 
-export default React.memo(AnimateRandomPhoto, shallowEqual);
+export default React.memo(AnimateRandomPhoto);
