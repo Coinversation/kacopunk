@@ -8,6 +8,7 @@ import Faq from 'components/Homepage/Faq';
 import { useAppSelector } from 'hooks';
 import { selectNft, NFT } from 'containers/Homepage/slice';
 import draw from 'utils/draw';
+import { head } from './assets';
 
 function getRandomIndex(length: number) {
   return Math.floor(Math.random() * length);
@@ -23,29 +24,38 @@ const Homepage = (): JSX.Element => {
     return {
       background: getPartByIndex(NFT.backgrounds, backgroundIndex),
       cap: getPartByIndex(NFT.caps, capIndex),
+      head: head,
       glasse: getPartByIndex(NFT.glasses, glasseIndex),
       clothe: getPartByIndex(NFT.clothes, clotheIndex),
     };
   };
 
   // banner ----------start---------
-  const [nft12, setNft12] = useState(getRandom12());
+  const [nft12, setNft12] = useState([]);
 
-  function getRandom12() {
+  async function getRandom12() {
     const arr = [];
     for (let i = 0; i < 12; i++) {
       const i = getRandomIndex(nft[NFT.backgrounds].length);
       const j = getRandomIndex(nft[NFT.glasses].length);
       const k = getRandomIndex(nft[NFT.caps].length);
       const l = getRandomIndex(nft[NFT.clothes].length);
-      const drawParams = getImageByIndex({ backgroundIndex: i, capIndex: k, glasseIndex: j, clotheIndex: l });
-      arr.push(draw(drawParams));
+      const drawParams = getImageByIndex({
+        backgroundIndex: i,
+        capIndex: k,
+        glasseIndex: j,
+        clotheIndex: l,
+      });
+      const result = await draw(drawParams);
+      arr.push(result);
     }
     return arr;
   }
   useEffect(() => {
-    const timer = setInterval(() => {
-      setNft12(getRandom12());
+    getRandom12().then(r => setNft12(r));
+    const timer = setInterval(async () => {
+      const r = await getRandom12();
+      setNft12(r);
     }, 3000);
 
     return () => {
@@ -59,10 +69,14 @@ const Homepage = (): JSX.Element => {
   const [glasseIndex, setGloasseIndex] = useState(0);
   const [capIndex, setCapIndex] = useState(0);
   const [clotheIndex, setClotheIndex] = useState(0);
+  const [image, setImage] = useState('');
 
-  const image = useMemo(() => {
-    const drawParams = getImageByIndex({ backgroundIndex, capIndex, glasseIndex, clotheIndex });
-    return draw(drawParams);
+  useEffect(() => {
+    (async function () {
+      const drawParams = getImageByIndex({ backgroundIndex, capIndex, glasseIndex, clotheIndex });
+      const result = await draw(drawParams);
+      setImage(result);
+    })();
   }, [backgroundIndex, capIndex, glasseIndex, clotheIndex]);
 
   // 帽子

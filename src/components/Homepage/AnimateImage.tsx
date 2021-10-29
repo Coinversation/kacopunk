@@ -8,27 +8,6 @@ const AnimateImageWarp = styled.div`
     left: 0;
     top: 0;
   }
-  .cap {
-    left: calc(100% + 60px);
-    top: -40px;
-    border-radius: 50%;
-    background-size: 70px 70px;
-    background-position: center;
-  }
-  .glasse {
-    left: calc(100% + 100px);
-    top: 50%;
-    border-radius: 50%;
-    background-size: 150px 150px;
-    background-position: center -20px;
-  }
-  .clothe {
-    left: calc(100% - 70px);
-    top: calc(100% - 70px);
-    border-radius: 50%;
-    background-size: 240px 240px;
-    background-position: center -120px;
-  }
 
   .fade-enter {
     opacity: 0%;
@@ -118,14 +97,14 @@ const AnimateImageWarp = styled.div`
   }
 
   .cap {
-    left: calc(100% + 30px);
+    left: calc(100% + 20px);
     top: -20px;
     border-radius: 50%;
-    background-size: 35px 35px;
-    background-position: center;
+    background-size: 70px 70px;
+    background-position: center 5px;
   }
   .glasse {
-    left: calc(100% + 50px);
+    left: calc(100% + 30px);
     top: 50%;
     border-radius: 50%;
     background-size: 75px 75px;
@@ -140,14 +119,14 @@ const AnimateImageWarp = styled.div`
   }
   @media screen and (min-width: 640px) {
     .cap {
-      left: calc(100% + 60px);
+      left: calc(100% + 40px);
       top: -40px;
       border-radius: 50%;
-      background-size: 70px 70px;
-      background-position: center;
+      background-size: 140px 140px;
+      background-position: center 10px;
     }
     .glasse {
-      left: calc(100% + 100px);
+      left: calc(100% + 60px);
       top: 50%;
       border-radius: 50%;
       background-size: 150px 150px;

@@ -19,7 +19,7 @@ const BannerWarp = styled.div`
 
 const Banner = ({ nft }): JSX.Element => (
   <BannerWarp className="font-gotham">
-    <Container className="flex items-center justify-between flex-col md:flex-row text-center md:text-left">
+    <Container className="flex items-center justify-between flex-col lg:flex-row text-center lg:text-left">
       <div>
         <h1 className="text-5xl sm:text-6xl mb-6">
           <span className="caption">
@@ -37,7 +37,7 @@ const Banner = ({ nft }): JSX.Element => (
           <Button type="outline">View More &gt;&gt;</Button>
         </div>
       </div>
-      <div>
+      <div className="mt-8 lg:mt-0">
         <AnimateGroupImage nft={nft} />
       </div>
     </Container>

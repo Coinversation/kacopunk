@@ -22,8 +22,8 @@ const DifferentWarp = styled.div`
 
 const Different = ({ image, cap, glasse, clothe }) => (
   <DifferentWarp className="font-gotham overflow-hidden">
-    <Container className="flex items-center justify-between flex-col-reverse md:flex-row text-center md:text-left">
-      <div className="mt-28 md:mt-0">
+    <Container className="flex items-center justify-between flex-col-reverse lg:flex-row text-center lg:text-left">
+      <div className="mt-28 lg:mt-0">
         <AnimateImage image={image} cap={cap} glasse={glasse} clothe={clothe} />
       </div>
       <div>
