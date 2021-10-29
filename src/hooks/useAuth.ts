@@ -31,10 +31,7 @@ const useAuth = () => {
             }
           } else {
             window.localStorage.removeItem(connectorLocalStorageKey);
-            if (
-              error instanceof NoEthereumProviderError ||
-              error instanceof NoBscProviderError
-            ) {
+            if (error instanceof NoEthereumProviderError || error instanceof NoBscProviderError) {
               toastError('Provider Error', 'No provider was found');
             } else if (
               error instanceof UserRejectedRequestErrorInjected ||
@@ -44,10 +41,7 @@ const useAuth = () => {
                 const walletConnector = connector as WalletConnectConnector;
                 walletConnector.walletConnectProvider = null;
               }
-              toastError(
-                'Authorization Error',
-                'Please authorize to access your account'
-              );
+              toastError('Authorization Error', 'Please authorize to access your account');
             } else {
               toastError(error.name, error.message);
             }

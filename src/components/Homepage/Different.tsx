@@ -8,25 +8,26 @@ const DifferentWarp = styled.div`
   background-image: url(${bgImg});
   background-size: cover;
   background-position: center;
-  padding: 140px 0 100px 0;
-  .content {
-    height: 60vh;
-  }
   .caption {
     background: linear-gradient(90deg, #f59fee 0%, #b8c1c0 25%, #65c0e0 50%, #f59fee 75%, #81c1d9 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
+  padding: 70px 0 50px 0;
+  @media screen and (min-width: 640px) {
+    padding: 140px 0 100px 0;
+  }
 `;
 
 const Different = ({ image, cap, glasse, clothe }) => (
-  <DifferentWarp className="font-gotham">
-    <Container className="content flex items-center justify-between">
-      <div>
+  <DifferentWarp className="font-gotham overflow-hidden">
+    <Container className="flex items-center justify-between flex-col-reverse md:flex-row text-center md:text-left">
+      <div className="mt-28 md:mt-0">
         <AnimateImage image={image} cap={cap} glasse={glasse} clothe={clothe} />
       </div>
       <div>
-        <h1 className="text-6xl mb-6">
+        <h1 className="text-5xl sm:text-6xl mb-6">
           <span className="caption">
             Why Tarsier <br /> different?
           </span>

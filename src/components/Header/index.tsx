@@ -20,7 +20,7 @@ const Header = () => {
     <HeaderWarp>
       <Container className="content flex items-center justify-between">
         <img src={logo} alt="logo" className="w-28" />
-        <div className="flex items-center space-x-6">
+        <div className="items-center space-x-6 hidden sm:flex">
           <div className="flex items-center space-x-4">
             <Link to="/">
               <img src={twitter} alt="" />

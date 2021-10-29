@@ -28,11 +28,10 @@ const AnimateGroupImageWarp = styled.div`
 `;
 
 const AnimateGroupImage = ({ nft }) => {
-  console.log(nft);
   return (
     <AnimateGroupImageWarp className="grid grid-cols-4 grid-rows-3">
-      {nft.map(url => (
-        <div key={url} className="w-32 h-32 relative">
+      {nft.map((url, index) => (
+        <div key={index} className="w-32 h-32 relative">
           <SwitchTransition mode="out-in">
             <CSSTransition key={url} timeout={500} classNames="fade">
               <img className="absolute left-0 top-0" src={url} alt="" />

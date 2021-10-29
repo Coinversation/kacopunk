@@ -5,7 +5,6 @@ import { NFT } from 'containers/Homepage/slice';
 import tag_selected from './assets/tag_selected.png';
 
 const TarsiersWarp = styled.div`
-  padding: 120px 0 130px 0;
   .caption {
     background: linear-gradient(90deg, #f59fee 0%, #b8c1c0 25%, #65c0e0 50%, #f59fee 75%, #81c1d9 100%);
     -webkit-background-clip: text;
@@ -25,6 +24,11 @@ const TarsiersWarp = styled.div`
       background-size: 100% 100%;
       background-position: center;
     }
+  }
+
+  padding: 60px 0 65px 0;
+  @media screen and (min-width: 640px) {
+    padding: 120px 0 130px 0;
   }
 `;
 
@@ -49,7 +53,7 @@ const Tarsiers = ({ nft }) => {
   return (
     <TarsiersWarp className="font-gotham">
       <Container className="content text-center">
-        <h1 className="text-6xl mb-6">
+        <h1 className="text-5xl sm:text-6xl mb-6">
           <span className="caption">What are tarsiers made of</span>
         </h1>
         <p className="text-sm text-secondaryTextColor leading-loose">
@@ -57,12 +61,12 @@ const Tarsiers = ({ nft }) => {
           <br />
           outfits and background features. Each Tarsier is a unique NFT asset！
         </p>
-        <div className="flex items-center justify-center space-x-4 mt-10 text-textColor">
+        <div className="flex items-center justify-center space-x-2 sm:space-x-4 mt-10 text-textColor text-xl sm:text-2xl">
           {Object.values(NFT).map((item, index) => (
             <span
               className={`
               ${tag === item ? 'text-primary' : ''} 
-              cursor-pointer space-x-4 text-2xl`}
+              cursor-pointer space-x-2 sm:space-x-4`}
               key={item}
               onClick={() => setTag(item)}
             >
@@ -71,10 +75,10 @@ const Tarsiers = ({ nft }) => {
             </span>
           ))}
         </div>
-        <div className="flex justify-center flex-wrap w-6/8 m-auto mt-10 space-x-10">
+        <div className="flex justify-center flex-wrap w-6/8 m-auto mt-10">
           {parts.map((part, i) => (
-            <div key={i}>
-              <img src={part} key={part} alt="" className="w-36 h-36" />
+            <div key={i} className="mx-2 sm:mx-4">
+              <img src={part} key={part} alt="" className="w-16 h-16 md:w-36 md:h-36" />
               <p className="text-center text-textColor text-sm">{backgrounds[i].caption}</p>
               <p className="text-center text-secondaryTextColor text-sm">{backgrounds[i].size}</p>
             </div>

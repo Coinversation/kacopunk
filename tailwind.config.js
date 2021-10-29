@@ -23,9 +23,9 @@ module.exports = {
       fontFamily: {
         gotham: ['Gotham'],
       },
-    },
-    screens: {
-      huge: '1920px',
+      screens: {
+        huge: '1920px',
+      },
     },
   },
   variants: {

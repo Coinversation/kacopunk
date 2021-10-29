@@ -4,7 +4,6 @@ import Container from 'components/Container';
 import bgImg from './assets/roadmap_bg.png';
 
 const RoadmapWarp = styled.div`
-  padding: 200px 0 170px 0;
   background-image: url(${bgImg});
   background-position: top center;
   background-size: cover;
@@ -13,6 +12,11 @@ const RoadmapWarp = styled.div`
     background: linear-gradient(90deg, #f59fee 0%, #b8c1c0 25%, #65c0e0 50%, #f59fee 75%, #81c1d9 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+
+  padding: 100px 0 80px 0;
+  @media screen and (min-width: 640px) {
+    padding: 200px 0 170px 0;
   }
 `;
 
@@ -50,8 +54,8 @@ const ItemWarp = styled.div<{ height: number; isEnd: boolean }>`
 `;
 
 const Item = ({ content, isEnd }) => (
-  <ItemWarp className="space-x-16 flex item-start" height={content.height} isEnd={isEnd}>
-    <div className="line">
+  <ItemWarp className="space-x-0 md:space-x-16 flex item-start" height={content.height} isEnd={isEnd}>
+    <div className="line hidden md:block">
       <i className="point"></i>
     </div>
     <div>
@@ -90,10 +94,10 @@ const roadma = [
 const Roadmap = () => (
   <RoadmapWarp className="font-gotham">
     <Container>
-      <h1 className="text-6xl font-medium text-center mb-28">
+      <h1 className="text-5xl sm:text-6xl font-medium text-center mb-16 sm:mb-28">
         <span className="caption">Roadmap</span>
       </h1>
-      <div className="m-auto w-max">
+      <div className="m-auto">
         {roadma.map((item, index) => (
           <Item content={item} key={index} isEnd={index === roadma.length - 1} />
         ))}

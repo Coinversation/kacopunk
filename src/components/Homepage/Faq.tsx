@@ -39,22 +39,22 @@ const FaqWarp = styled.div`
     -webkit-text-fill-color: transparent;
   }
   .leftQ {
-    flex: 0 0 360px;
+    min-width: 360px;
   }
 `;
 
 const Faq = () => (
   <FaqWarp className="font-gotham bg-bgColor">
     <Container>
-      <h1 className="text-6xl mb-20">
+      <h1 className="text-5xl sm:text-6xl mb-10 md:mb-20 text-center md:text-left">
         <span className="caption">FAQ</span>
       </h1>
-      <div className="flex space-x-8 mb-20 relative">
+      <div className="flex space-x-0 md:space-x-8 mb-10 md:mb-20 relative flex-col md:flex-row">
         <div className="border-primary border-l-4 border-b-4 rounded-xl leftQ p-10 bg-white">
           <h3 className="text-primary text-2xl relative z-10 mb-4">How much to mint?</h3>
           <p className="text-secondaryTextColor relative text-sm z-10">Tarsier is priced at a flat rate (0.1BNB).</p>
         </div>
-        <div className="border-primary border-l-4 border-b-4 rounded-xl p-10 bg-white">
+        <div className="border-primary border-l-4 border-b-4 rounded-xl p-10 bg-white mt-4 md:mt-0">
           <h3 className="text-primary text-2xl relative z-10 mb-4">Tokenomics:</h3>
           <p className="text-secondaryTextColor relative text-sm z-10">
             The official spends 10% of the minting fee to purchase the rare NFT (30 in total), they are distributed in
@@ -63,17 +63,17 @@ const Faq = () => (
         </div>
       </div>
       {faqContents.map((content, i) => (
-        <article className="mb-14" key={i}>
+        <article className="mb-14 text-center md:text-left" key={i}>
           <h3 className="text-3xl text-textColor mb-4">{content.title}</h3>
           {content.sections.map((section, j) => (
-            <section className="text-secondaryTextColor text-sm leading-loose mb-6 w-5/6" key={`${i}_${j}`}>
+            <section className="text-secondaryTextColor text-sm leading-loose mb-6 w-full md:w-5/6" key={`${i}_${j}`}>
               {section}
             </section>
           ))}
         </article>
       ))}
     </Container>
-    <img className="costar" src={faq_costar} alt="img" />
+    <img className="hidden md:inline-block costar" src={faq_costar} alt="img" />
   </FaqWarp>
 );
 

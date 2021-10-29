@@ -20,9 +20,7 @@ const Footer = () => (
       <img src={feishu} alt="" />
       <img src={fecebook} alt="" />
     </div>
-    <p className="mt-4 text-secondaryTextColor text-sm text-center font-gotham">
-      Smart Contract
-    </p>
+    <p className="mt-4 text-secondaryTextColor text-sm text-center font-gotham">Smart Contract</p>
   </FooterWarp>
 );
 
