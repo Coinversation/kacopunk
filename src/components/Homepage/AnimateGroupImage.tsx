@@ -2,7 +2,7 @@ import React from 'react';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
 
-const AnimateRandomPhotoWarp = styled.div`
+const AnimateGroupImageWarp = styled.div`
   img {
     width: 100%;
     height: 100%;
@@ -27,11 +27,12 @@ const AnimateRandomPhotoWarp = styled.div`
   }
 `;
 
-const AnimateRandomPhoto = ({ photos }) => {
+const AnimateGroupImage = ({ nft }) => {
+  console.log(nft);
   return (
-    <AnimateRandomPhotoWarp className="grid grid-cols-4 grid-rows-3">
-      {photos.map(url => (
-        <div className="w-32 h-32 relative">
+    <AnimateGroupImageWarp className="grid grid-cols-4 grid-rows-3">
+      {nft.map(url => (
+        <div key={url} className="w-32 h-32 relative">
           <SwitchTransition mode="out-in">
             <CSSTransition key={url} timeout={500} classNames="fade">
               <img className="absolute left-0 top-0" src={url} alt="" />
@@ -39,8 +40,8 @@ const AnimateRandomPhoto = ({ photos }) => {
           </SwitchTransition>
         </div>
       ))}
-    </AnimateRandomPhotoWarp>
+    </AnimateGroupImageWarp>
   );
 };
 
-export default React.memo(AnimateRandomPhoto);
+export default React.memo(AnimateGroupImage);

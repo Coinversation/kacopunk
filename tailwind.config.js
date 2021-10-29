@@ -9,6 +9,7 @@ module.exports = {
         secondary: '#F59FEE',
         textColor: '#263131',
         secondaryTextColor: '#5B6F6F',
+        bgColor: '#F9F9F9',
       },
       keyframes: {
         wiggle: {

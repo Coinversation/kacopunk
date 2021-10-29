@@ -1,44 +1,39 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-import { AppThunk, RootState } from 'stores';
+import { RootState } from 'stores';
+import { backgrounds, caps, clothes, glasses } from './assets';
+
+export enum NFT {
+  caps = 'caps',
+  glasses = 'glasses',
+  clothes = 'clothes',
+  backgrounds = 'backgrounds',
+}
 
 export interface homepageState {
-  value: number;
-  status: 'idle' | 'loading' | 'failed';
+  nft: {
+    [NFT.backgrounds]: Array<string>;
+    [NFT.caps]: Array<string>;
+    [NFT.glasses]: Array<string>;
+    [NFT.clothes]: Array<string>;
+  };
 }
 
 const initialState: homepageState = {
-  value: 0,
-  status: 'idle',
+  nft: {
+    [NFT.backgrounds]: backgrounds,
+    [NFT.caps]: caps,
+    [NFT.clothes]: clothes,
+    [NFT.glasses]: glasses,
+  },
 };
 
 export const homepageSlice = createSlice({
   name: 'homepage',
   initialState,
-  reducers: {
-    increment: state => {
-      state.value += 1;
-    },
-    decrement: state => {
-      state.value -= 1;
-    },
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload;
-    },
-  },
+  reducers: {},
 });
 
-export const { increment, decrement, incrementByAmount } = homepageSlice.actions;
-
-export const selectCount = (state: RootState) => state.homepage.value;
-
-export const incrementIfOdd =
-  (amount: number): AppThunk =>
-  (dispatch, getState) => {
-    const currentValue = selectCount(getState());
-    if (currentValue % 2 === 1) {
-      dispatch(incrementByAmount(amount));
-    }
-  };
+export const selectNft = (state: RootState) => state.homepage.nft;
 
 export default homepageSlice.reducer;
