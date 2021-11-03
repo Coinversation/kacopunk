@@ -24,7 +24,7 @@ const AnimateImageWarp = styled.div`
   @media (prefers-reduced-motion: no-preference) {
     .fade-enter-active,
     .fade-exit-active {
-      transition: opacity 0.5s;
+      transition: opacity 1s;
     }
   }
   .fade-move-t-enter {
@@ -46,7 +46,7 @@ const AnimateImageWarp = styled.div`
   @media (prefers-reduced-motion: no-preference) {
     .fade-move-t-enter-active,
     .fade-move-t-exit-active {
-      transition: opacity 0.5s, transform 0.5s;
+      transition: opacity 1s, transform 1s;
     }
   }
 
@@ -69,7 +69,7 @@ const AnimateImageWarp = styled.div`
   @media (prefers-reduced-motion: no-preference) {
     .fade-move-r-enter-active,
     .fade-move-r-exit-active {
-      transition: opacity 0.5s, transform 0.5s;
+      transition: opacity 1s, transform 1s;
     }
   }
 
@@ -92,7 +92,7 @@ const AnimateImageWarp = styled.div`
   @media (prefers-reduced-motion: no-preference) {
     .fade-move-b-enter-active,
     .fade-move-b-exit-active {
-      transition: opacity 0.5s, transform 0.5s;
+      transition: opacity 1s, transform 1s;
     }
   }
 
@@ -147,30 +147,30 @@ const AnimateImage = ({ image, cap, glasse, clothe }) => {
     <AnimateImageWarp>
       <div className="w-40 h-40 sm:w-60 sm:h-60 relative">
         <SwitchTransition mode="out-in">
-          <CSSTransition key={image} timeout={500} classNames="fade">
+          <CSSTransition key={image} timeout={1000} classNames="fade">
             <img className="absolute w-full h-full image" src={image} alt="" />
           </CSSTransition>
         </SwitchTransition>
         <SwitchTransition mode="out-in">
-          <CSSTransition key={cap} timeout={500} classNames="fade-move-t">
+          <CSSTransition key={cap} timeout={1000} classNames="fade-move-t">
             <div
-              className="absolute w-14 h-14 sm:w-28 sm:h-28 bg-white p-4 bg-no-repeat cap"
+              className="absolute w-14 h-14 sm:w-28 sm:h-28 bg-white shadow-md p-4 bg-no-repeat cap"
               style={{ backgroundImage: `url(${cap})` }}
             />
           </CSSTransition>
         </SwitchTransition>
         <SwitchTransition mode="out-in">
-          <CSSTransition key={glasse} timeout={500} classNames="fade-move-r">
+          <CSSTransition key={glasse} timeout={1000} classNames="fade-move-r">
             <div
-              className="absolute w-14 h-14 sm:w-28 sm:h-28 bg-white p-4 bg-no-repeat glasse"
+              className="absolute w-14 h-14 sm:w-28 sm:h-28 bg-white shadow-md p-4 bg-no-repeat glasse"
               style={{ backgroundImage: `url(${glasse})` }}
             />
           </CSSTransition>
         </SwitchTransition>
         <SwitchTransition mode="out-in">
-          <CSSTransition key={clothe} timeout={500} classNames="fade-move-b">
+          <CSSTransition key={clothe} timeout={1000} classNames="fade-move-b">
             <div
-              className="absolute w-14 h-14 sm:w-28 sm:h-28 bg-white p-4 bg-no-repeat clothe"
+              className="absolute w-14 h-14 sm:w-28 sm:h-28 bg-white shadow-md p-4 bg-no-repeat clothe"
               style={{ backgroundImage: `url(${clothe})` }}
             />
           </CSSTransition>

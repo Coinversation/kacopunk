@@ -14,6 +14,10 @@ function getRandomIndex(length: number) {
   return Math.floor(Math.random() * length);
 }
 
+function getRandomNumber(length: number) {
+  return Math.ceil(Math.random() * length);
+}
+
 const Homepage = (): JSX.Element => {
   const nft = useAppSelector(selectNft);
 
@@ -35,16 +39,50 @@ const Homepage = (): JSX.Element => {
 
   async function getRandom12() {
     const arr = [];
+    const h = nft[NFT.backgrounds].length;
+    const j = nft[NFT.glasses].length;
+    const k = nft[NFT.caps].length;
+    const l = nft[NFT.clothes].length;
+    const allPossible = h * j * k * l; // 所有的可能性
+    const hp = (j - 1) * (k * l) + (k - 1) * l + l; // 大于这个数表示 h 位一定大于 1
+    const jp = (k - 1) * l + l;
+    const kp = l;
+    /**
+     * ****h*j*k*l
+     * 1   1 1 1 1
+     * ...
+     * 12  1 1 2 1     0 + 0 + 1 * 11 + 1
+     * ...
+     * 121 1 1 11 11   0 + 0 + 10 * 11 + 11
+     * ...
+     * n   (h-1)*1331 + (j-1)*121 + (k-1)*11 + l
+     */
     for (let i = 0; i < 12; i++) {
-      const i = getRandomIndex(nft[NFT.backgrounds].length);
-      const j = getRandomIndex(nft[NFT.glasses].length);
-      const k = getRandomIndex(nft[NFT.caps].length);
-      const l = getRandomIndex(nft[NFT.clothes].length);
+      const randomNum = getRandomNumber(allPossible);
+      let hs = 1;
+      let js = 1;
+      let ks = 1;
+      let ls = 1;
+      if (randomNum - hp > 0) {
+        hs = (randomNum - (randomNum % hp)) / (j * k * l) + 1;
+      }
+      const hn = (hs - 1) * (j * k * l);
+      if (randomNum - hn - jp > 0) {
+        js = (randomNum - hn - ((randomNum - hn) % jp)) / (k * l) + 1;
+      }
+      const jn = (js - 1) * (k * l);
+      if (randomNum - hn - jn - kp > 0) {
+        ks = (randomNum - hn - jn - ((randomNum - hn - jn) % kp)) / l + 1;
+      }
+      const kn = (ks - 1) * l;
+      if (randomNum - hn - jn - kn > 0) {
+        ls = randomNum - hn - jn - kn;
+      }
       const drawParams = getImageByIndex({
-        backgroundIndex: i,
-        capIndex: k,
-        glasseIndex: j,
-        clotheIndex: l,
+        backgroundIndex: hs - 1,
+        capIndex: ks - 1,
+        glasseIndex: js - 1,
+        clotheIndex: ls - 1,
       });
       const result = await draw(drawParams);
       arr.push(result);
@@ -103,7 +141,7 @@ const Homepage = (): JSX.Element => {
       setGloasseIndex(j);
       setCapIndex(k);
       setClotheIndex(l);
-    }, 3000);
+    }, 4000);
 
     return () => {
       clearInterval(timer);

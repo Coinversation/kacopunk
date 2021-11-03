@@ -8,7 +8,6 @@ import { default as background7 } from './backgrounds/7.png';
 import { default as background8 } from './backgrounds/8.png';
 import { default as background9 } from './backgrounds/9.png';
 import { default as background10 } from './backgrounds/10.png';
-import { default as background11 } from './backgrounds/11.png';
 
 import { default as cap1 } from './caps/1.png';
 import { default as cap2 } from './caps/2.png';
@@ -59,7 +58,6 @@ export const backgrounds = [
   background8,
   background9,
   background10,
-  background11,
 ];
 
 export const caps = [cap1, cap2, cap3, cap4, cap5, cap6, cap7, cap8, cap9, cap10, cap11];

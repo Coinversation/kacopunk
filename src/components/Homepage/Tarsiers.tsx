@@ -53,7 +53,7 @@ const Tarsiers = ({ nft }) => {
   return (
     <TarsiersWarp className="font-gotham">
       <Container className="content text-center">
-        <h1 className="text-5xl sm:text-6xl mb-6">
+        <h1 className="text-5xl mb-6">
           <span className="caption">What are tarsiers made of</span>
         </h1>
         <p className="text-sm text-secondaryTextColor leading-loose">
@@ -66,7 +66,7 @@ const Tarsiers = ({ nft }) => {
             <span
               className={`
               ${tag === item ? 'text-primary' : ''} 
-              cursor-pointer space-x-2 sm:space-x-4`}
+              cursor-pointer text-lg space-x-2 sm:space-x-4`}
               key={item}
               onClick={() => setTag(item)}
             >
@@ -78,7 +78,7 @@ const Tarsiers = ({ nft }) => {
         <div className="flex justify-center flex-wrap w-6/8 m-auto mt-10">
           {parts.map((part, i) => (
             <div key={i} className="mx-2 sm:mx-4">
-              <img src={part} key={part} alt="" className="w-16 h-16 md:w-36 md:h-36" />
+              <img src={part} key={part} alt="" className="w-16 h-16 md:w-32 md:h-32" />
               <p className="text-center text-textColor text-sm">{backgrounds[i].caption}</p>
               <p className="text-center text-secondaryTextColor text-sm">{backgrounds[i].size}</p>
             </div>

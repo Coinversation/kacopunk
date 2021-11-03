@@ -14,9 +14,9 @@ const DifferentWarp = styled.div`
     -webkit-text-fill-color: transparent;
   }
 
-  padding: 70px 0 50px 0;
+  padding: 100px 0 90px 0;
   @media screen and (min-width: 640px) {
-    padding: 140px 0 100px 0;
+    padding: 200px 0 180px 0;
   }
 `;
 
@@ -27,7 +27,7 @@ const Different = ({ image, cap, glasse, clothe }) => (
         <AnimateImage image={image} cap={cap} glasse={glasse} clothe={clothe} />
       </div>
       <div>
-        <h1 className="text-5xl sm:text-6xl mb-6">
+        <h1 className="text-5xl mb-6">
           <span className="caption">
             Why Tarsier <br /> different?
           </span>

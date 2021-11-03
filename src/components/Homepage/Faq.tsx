@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import Container from 'components/Container';
 import faq_costar from './assets/faq_costar.png';
 
@@ -28,7 +29,7 @@ const FaqWarp = styled.div`
   padding: 100px 0 170px 0;
   position: relative;
   .costar {
-    width: 540px;
+    width: 480px;
     position: absolute;
     right: 48px;
     top: -160px;
@@ -46,7 +47,7 @@ const FaqWarp = styled.div`
 const Faq = () => (
   <FaqWarp className="font-gotham bg-bgColor">
     <Container>
-      <h1 className="text-5xl sm:text-6xl mb-10 md:mb-20 text-center md:text-left">
+      <h1 className="text-5xl mb-10 md:mb-20 text-center md:text-left">
         <span className="caption">FAQ</span>
       </h1>
       <div className="flex space-x-0 md:space-x-8 mb-10 md:mb-20 relative flex-col md:flex-row">
@@ -73,7 +74,7 @@ const Faq = () => (
         </article>
       ))}
     </Container>
-    <img className="hidden md:inline-block costar" src={faq_costar} alt="img" />
+    <img className="hidden md:inline-block animate-spin-slow costar" src={faq_costar} alt="img" />
   </FaqWarp>
 );
 

@@ -21,7 +21,7 @@ const Banner = ({ nft }): JSX.Element => (
   <BannerWarp className="font-gotham">
     <Container className="flex items-center justify-between flex-col lg:flex-row text-center lg:text-left">
       <div>
-        <h1 className="text-5xl sm:text-6xl mb-6">
+        <h1 className="text-5xl mb-6">
           <span className="caption">
             What is
             <br /> Tarsier?
@@ -34,7 +34,11 @@ const Banner = ({ nft }): JSX.Element => (
         </p>
         <div className="space-x-4 mt-10">
           <Button>Mint &gt;&gt;</Button>
-          <Button type="outline">View More &gt;&gt;</Button>
+          <a href="https://www.kaco.finance/">
+            <Button Button type="outline">
+              View More &gt;&gt;
+            </Button>
+          </a>
         </div>
       </div>
       <div className="mt-8 lg:mt-0">
