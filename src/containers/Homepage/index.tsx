@@ -10,6 +10,8 @@ import { selectNft, NFT } from 'containers/Homepage/slice';
 import draw from 'utils/draw';
 import { head } from './assets';
 
+const oldNftMap = new Set();
+
 function getRandomIndex(length: number) {
   return Math.floor(Math.random() * length);
 }
@@ -57,8 +59,14 @@ const Homepage = (): JSX.Element => {
      * ...
      * n   (h-1)*1331 + (j-1)*121 + (k-1)*11 + l
      */
+    oldNftMap.clear();
     for (let i = 0; i < 12; i++) {
       const randomNum = getRandomNumber(allPossible);
+      if (oldNftMap.has(randomNum)) {
+        i = i - 1;
+        continue;
+      }
+      oldNftMap.add(randomNum);
       let hs = 1;
       let js = 1;
       let ks = 1;
