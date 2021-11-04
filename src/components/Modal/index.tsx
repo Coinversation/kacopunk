@@ -10,6 +10,7 @@ const Modal = ({
   title,
   footer,
   children,
+  style,
   ...otherProps
 }: {
   visible: boolean;
@@ -17,6 +18,7 @@ const Modal = ({
   title?: React.ReactNode;
   footer?: React.ReactNode;
   children?: React.ReactNode;
+  style?: object;
 }) => {
   /**
    * see more
@@ -35,6 +37,7 @@ const Modal = ({
       focusTriggerAfterClose={false}
       maskClosable={false}
       footer={footer}
+      style={style}
       {...otherProps}
     >
       {children}

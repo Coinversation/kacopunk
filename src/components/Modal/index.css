@@ -6,6 +6,7 @@
 .rc-dialog-wrap {
   @apply fixed top-0 left-0 right-0 bottom-0 z-30;
   @apply overflow-auto outline-none;
+  @apply flex;
 
   -webkit-overflow-scrolling: touch;
 }
@@ -111,7 +112,6 @@
   .rc-dialog {
     width: 480px;
     margin: auto;
-    margin-top: 24vh;
   }
 }
 

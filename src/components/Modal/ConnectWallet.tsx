@@ -11,7 +11,7 @@ const ConnectWalletModalWarp = styled.div``;
 const ConnectWalletModal = ({ visible, onClose }) => {
   const { login } = useAuth();
   return (
-    <Modal visible={visible} onClose={onClose} title={<span className="text-primary text-xl">Connect Wallet</span>}>
+    <Modal visible={visible} onClose={onClose} style={{ width: '400px' }}>
       <ConnectWalletModalWarp className="space-x-4 flex items-center flex-wrap justify-center py-10 px-6">
         <div
           className="text-center cursor-pointer transition duration-200 hover:opacity-80"
