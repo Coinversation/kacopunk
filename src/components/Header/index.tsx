@@ -15,7 +15,7 @@ const HeaderWarp = styled.header`
   }
 `;
 
-const Header = () => {
+const Header = ({ account }) => {
   return (
     <HeaderWarp className="border-b border-borderColor">
       <Container className="content flex items-center justify-between">
@@ -39,7 +39,7 @@ const Header = () => {
             <a href="https://www.kaco.finance/">
               <Button type="secondary">To DApp</Button>
             </a>
-            <ConnectWalletButton />
+            {account ? 'success' : <ConnectWalletButton />}
           </div>
         </div>
       </Container>

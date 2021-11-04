@@ -1,8 +1,10 @@
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import Button from 'components/Button';
 import Container from 'components/Container';
 import AnimateGroupImage from './AnimateGroupImage';
+import MintModal from 'components/Modal/Mint';
 
 const BannerWarp = styled.div`
   .caption {
@@ -17,35 +19,43 @@ const BannerWarp = styled.div`
   }
 `;
 
-const Banner = ({ nft }): JSX.Element => (
-  <BannerWarp className="font-gotham">
-    <Container className="flex items-center justify-between flex-col lg:flex-row text-center lg:text-left">
-      <div>
-        <h1 className="text-5xl mb-6">
-          <span className="caption">
-            What is
-            <br /> Tarsier?
-          </span>
-        </h1>
-        <p className="text-sm text-secondaryTextColor leading-loose">
-          Tarsier is the smallest primate in the world. <br />
-          Tarsier came to the blockchain world to create some fun for us. <br />
-          Following the logic of evolution, the tarsier will be <br /> given some special functions in the future.
-        </p>
-        <div className="space-x-4 mt-10">
-          <Button>Mint &gt;&gt;</Button>
-          <a href="https://www.kaco.finance/">
-            <Button Button type="outline">
-              View More &gt;&gt;
-            </Button>
-          </a>
-        </div>
-      </div>
-      <div className="mt-8 lg:mt-0">
-        <AnimateGroupImage nft={nft} />
-      </div>
-    </Container>
-  </BannerWarp>
-);
+const Banner = ({ nft }): JSX.Element => {
+  const [visible, setVisible] = useState(false);
+  return (
+    <>
+      <BannerWarp className="font-gotham">
+        <Container className="flex items-center justify-between flex-col lg:flex-row text-center lg:text-left">
+          <div>
+            <h1 className="text-5xl mb-6">
+              <span className="caption">
+                What is
+                <br /> Tarsier?
+              </span>
+            </h1>
+            <p className="text-sm text-secondaryTextColor leading-loose">
+              Tarsier is the smallest primate in the world. <br />
+              Tarsier came to the blockchain world to create some fun for us. <br />
+              Following the logic of evolution, the tarsier will be <br /> given some special functions in the future.
+            </p>
+            <div className="space-x-4 mt-10">
+              <Button onClick={() => setVisible(true)}>Mint &gt;&gt;</Button>
+              <a href="https://www.kaco.finance/">
+                <Button Button type="outline">
+                  View More &gt;&gt;
+                </Button>
+              </a>
+            </div>
+          </div>
+          <div className="mt-8 lg:mt-0">
+            <AnimateGroupImage nft={nft} />
+          </div>
+        </Container>
+      </BannerWarp>
+
+      {/* modal */}
+      <MintModal visible={visible} onClose={() => setVisible(false)}></MintModal>
+    </>
+  );
+};
 
 export default Banner;
