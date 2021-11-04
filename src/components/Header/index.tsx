@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { LogoutIcon } from '@kaco/uikit';
 
 import logo from './logo.svg';
 import discord from './discord.svg';
@@ -15,7 +16,7 @@ const HeaderWarp = styled.header`
   }
 `;
 
-const Header = ({ account }) => {
+const Header = ({ account, logout }) => {
   return (
     <HeaderWarp className="border-b border-borderColor">
       <Container className="content flex items-center justify-between">
@@ -39,7 +40,14 @@ const Header = ({ account }) => {
             <a href="https://www.kaco.finance/">
               <Button type="secondary">To DApp</Button>
             </a>
-            {account ? 'success' : <ConnectWalletButton />}
+            {account ? (
+              <div className="flex items-center">
+                <span className="inline-block w-40 overflow-hidden overflow-ellipsis">{account}</span>
+                <LogoutIcon className="cursor-pointer" onClick={logout} />
+              </div>
+            ) : (
+              <ConnectWalletButton />
+            )}
           </div>
         </div>
       </Container>

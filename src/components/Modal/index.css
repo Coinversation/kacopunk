@@ -44,11 +44,11 @@
 }
 
 .rc-dialog-body {
-  @apply p-5;
+  @apply px-5;
 }
 
 .rc-dialog-footer {
-  @apply py-2.5 px-5;
+  @apply pt-5 pb-8 px-5;
 }
 
 .rc-dialog-zoom-enter,
@@ -109,8 +109,9 @@
 
 @media (min-width: 768px) {
   .rc-dialog {
-    width: 600px;
-    margin: 30px auto;
+    width: 480px;
+    margin: auto;
+    margin-top: 24vh;
   }
 }
 

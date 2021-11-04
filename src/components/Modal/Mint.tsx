@@ -8,7 +8,7 @@ const MintModalWarp = styled.div``;
 
 const MintFooter = () => (
   <div className="flex flex-col items-center justify-center">
-    <p className="text-center mb-1 text-secondaryTextColor">Total Cost: 1.456 ETH</p>
+    <p className="text-center text-xs mb-4 text-secondaryTextColor">Total Cost: 1.456 BNB</p>
     <Button type="primary" block>
       Confirm
     </Button>
@@ -24,14 +24,14 @@ const MintModal = ({ visible, onClose }) => {
       footer={<MintFooter />}
     >
       <MintModalWarp>
-        <p className="flex justify-end text-secondaryTextColor mb-1">Balance: 0.001ETH</p>
-        <div className="px-6 py-4 bg-gray-500 rounded-xl input-container flex items-center">
+        <p className="flex justify-end text-secondaryTextColor text-xs mb-3">Balance: 0.001BNB</p>
+        <div className="px-6 py-4 bg-bgColor rounded-xl input-container flex items-center">
           <input
             type="text"
             placeholder="Please enter the Amount"
-            className="outline-none border-none bg-transparent flex-auto"
+            className="outline-none border-none bg-transparent flex-auto text-white"
           />
-          <button className="px-4 py-2 bg-gray-600 rounded-xl text-primary hover:opacity-70 active:opacity-60">
+          <button className="px-3 py-1.5 text-sm border-primary border-2 rounded-xl text-primary hover:opacity-70 active:opacity-60">
             Max
           </button>
         </div>
