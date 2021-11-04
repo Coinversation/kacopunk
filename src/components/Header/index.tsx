@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { LogoutIcon } from '@kaco/uikit';
 
 import logo from './logo.svg';
 import discord from './discord.svg';
@@ -41,9 +40,11 @@ const Header = ({ account, logout }) => {
               <Button type="secondary">To DApp</Button>
             </a>
             {account ? (
-              <div className="flex items-center">
+              <div
+                className="flex items-center bg-primary text-white h-12 rounded-xl px-6 cursor-pointer"
+                onClick={logout}
+              >
                 <span className="inline-block w-40 overflow-hidden overflow-ellipsis">{account}</span>
-                <LogoutIcon className="cursor-pointer" onClick={logout} />
               </div>
             ) : (
               <ConnectWalletButton />

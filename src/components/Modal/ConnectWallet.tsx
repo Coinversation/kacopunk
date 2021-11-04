@@ -2,27 +2,24 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Modal from './index';
+import useAuth from 'hooks/useAuth';
+import metamask from './metamask.svg';
+import { connectorsByName } from 'utils/web3React';
 
-const ConnectModalWarp = styled.div``;
+const ConnectWalletModalWarp = styled.div``;
 
-const ConnectModal = ({ visible, onClose }) => {
+const ConnectWalletModal = ({ visible, onClose }) => {
+  const { login } = useAuth();
   return (
     <Modal visible={visible} onClose={onClose} title={<span className="text-primary text-xl">Connect Wallet</span>}>
-      <ConnectModalWarp>
-        <p className="flex justify-end text-secondaryTextColor mb-1">Balance: 0.001ETH</p>
-        <div className="px-6 py-4 bg-gray-500 rounded-xl input-container flex items-center">
-          <input
-            type="text"
-            placeholder="Please enter the Amount"
-            className="outline-none border-none bg-transparent flex-auto"
-          />
-          <button className="px-4 py-2 bg-gray-600 rounded-xl text-primary hover:opacity-70 active:opacity-60">
-            Max
-          </button>
+      <ConnectWalletModalWarp className="space-x-4 flex items-center flex-wrap justify-center py-10 px-6">
+        <div className="text-center cursor-pointer" onClick={() => login(connectorsByName.walletconnect)}>
+          <img className="inline-block w-16" src={metamask} alt="metamask" />
+          <p className="text-secondaryTextColor text-sm mt-4">Metamask</p>
         </div>
-      </ConnectModalWarp>
+      </ConnectWalletModalWarp>
     </Modal>
   );
 };
 
-export default React.memo(ConnectModal);
+export default React.memo(ConnectWalletModal);

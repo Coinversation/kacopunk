@@ -1,16 +1,19 @@
-import React from 'react';
-import { useWalletModal } from '@kaco/uikit';
-import useAuth from 'hooks/useAuth';
+import React, { useState } from 'react';
+
 import Button from './index';
+import ConnectWalletModal from 'components/Modal/ConnectWallet';
 
 const ConnectWalletButton = props => {
-  const { login, logout } = useAuth();
-  const { onPresentConnectModal } = useWalletModal(login, logout);
+  const [visible, setVisible] = useState(false);
 
   return (
-    <Button onClick={onPresentConnectModal} {...props}>
-      Connect Wallet
-    </Button>
+    <>
+      <Button onClick={() => setVisible(true)} {...props}>
+        Connect Wallet
+      </Button>
+
+      <ConnectWalletModal visible={visible} onClose={() => setVisible(false)} />
+    </>
   );
 };
 
