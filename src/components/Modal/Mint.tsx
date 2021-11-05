@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { useBalance } from 'hooks/useBalance';
 import Button from 'components/Button';
 import Modal from './index';
+import { BigNumber } from '@ethersproject/bignumber';
 
 const MintModalWarp = styled.div``;
 
@@ -16,6 +18,8 @@ const MintFooter = () => (
 );
 
 const MintModal = ({ visible, onClose }) => {
+  const balance: BigNumber = useBalance();
+
   return (
     <Modal
       visible={visible}
@@ -24,7 +28,9 @@ const MintModal = ({ visible, onClose }) => {
       footer={<MintFooter />}
     >
       <MintModalWarp>
-        <p className="flex justify-end text-secondaryTextColor text-xs mb-3">Balance: 0.001BNB</p>
+        <p className="flex justify-end text-secondaryTextColor text-xs mb-3">
+          Balance: {balance ? balance.toNumber() : 0}BNB
+        </p>
         <div className="px-6 py-4 bg-bgColor rounded-xl input-container flex items-center">
           <input
             type="text"
