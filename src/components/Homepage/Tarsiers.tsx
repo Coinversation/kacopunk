@@ -33,23 +33,10 @@ const TarsiersWarp = styled.div`
   }
 `;
 
-export const backgrounds = [
-  { caption: 'Pumpkins', size: '16.89%' },
-  { caption: 'Pussycat', size: '18.24%' },
-  { caption: 'Blue Light', size: '3.19%' },
-  { caption: 'Boy Scout', size: '9.18%' },
-  { caption: 'NEON light', size: '12.76%' },
-  { caption: 'Colorful', size: '29.10%' },
-  { caption: 'Pussycat', size: '18.24%' },
-  { caption: 'Blue Light', size: '3.19%' },
-  { caption: 'Boy Scout', size: '9.18%' },
-  { caption: 'NEON light', size: '12.76%' },
-  { caption: 'Colorful', size: '29.10%' },
-];
-
-const Tarsiers = ({ nft }) => {
+const Tarsiers = ({ nft, nftName }) => {
   const [tag, setTag] = useState(NFT.caps);
   const parts = useMemo(() => nft[tag], [tag, nft]);
+  const partNames = useMemo(() => nftName[tag], [tag, nftName]);
 
   return (
     <>
@@ -79,10 +66,9 @@ const Tarsiers = ({ nft }) => {
           </div>
           <div className="flex justify-center flex-wrap w-6/8 m-auto mt-10">
             {parts.map((part, i) => (
-              <div key={i} className="mx-2 sm:mx-4">
-                <img src={part} key={part} alt="" className="w-16 h-16 md:w-32 md:h-32" />
-                <p className="text-center text-textColor text-sm">{backgrounds[i].caption}</p>
-                <p className="text-center text-secondaryTextColor text-sm">{backgrounds[i].size}</p>
+              <div key={i} className="mx-2 sm:mx-4 mb-4">
+                <img src={part} key={part} alt="" className="w-16 h-16 md:w-32 md:h-32 mb-2" />
+                <p className="text-center text-textColor text-sm">{partNames[i]}</p>
               </div>
             ))}
           </div>

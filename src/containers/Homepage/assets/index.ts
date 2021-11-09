@@ -60,7 +60,34 @@ export const backgrounds = [
   background10,
 ];
 
+export const backgroundNames = [
+  'Cyan Aurora',
+  'Yellow Aurora',
+  'Purple Ripples',
+  'Hazy Night',
+  'Green Thread',
+  'Blue Ink Color',
+  'Red Ink Color',
+  'Purple Aurora',
+  'Green Ripple',
+  'Water Emulsion',
+];
+
 export const caps = [cap1, cap2, cap3, cap4, cap5, cap6, cap7, cap8, cap9, cap10, cap11];
+
+export const capNames = [
+  'Pumpkins',
+  'Pussycat',
+  'Blue Light',
+  'Boy Scout',
+  'NEON light',
+  'Color Strip',
+  'Searchlights',
+  'Yellow Strip',
+  'Waves',
+  'Swimming Cap',
+  'Knit Cap',
+];
 
 export const glasses = [
   glasse1,
@@ -76,6 +103,20 @@ export const glasses = [
   glasse11,
 ];
 
+export const glasseNames = [
+  'Fire Rod',
+  'Purple Color',
+  'Pastels',
+  'Pixelation',
+  'Blotchy',
+  'Swimming Goggles',
+  "Miner's Glasses",
+  'Flash',
+  'Yellow Light',
+  'Green Light',
+  'Green Color',
+];
+
 export const clothes = [
   clothe1,
   clothe2,
@@ -88,4 +129,18 @@ export const clothes = [
   clothe9,
   clothe10,
   clothe11,
+];
+
+export const clotheNames = [
+  'Leisure',
+  'Flowered Dress',
+  'Green Sweater',
+  'Purple Sweater',
+  'Musician',
+  'Bathing Ring',
+  'Miners',
+  'Blue Coat',
+  'Artist',
+  'Cardigan-Sparkly',
+  'Cardigan-Dark Color',
 ];
