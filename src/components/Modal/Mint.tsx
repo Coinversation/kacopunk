@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { BigNumber } from '@ethersproject/bignumber';
 
 import { useBalance } from 'hooks/useBalance';
+import { useFPDSContract } from 'hooks/useContract';
 import Button from 'components/Button';
 import Modal from './index';
-import { BigNumber } from '@ethersproject/bignumber';
 
 const MintModalWarp = styled.div``;
 
@@ -19,6 +20,14 @@ const MintFooter = () => (
 
 const MintModal = ({ visible, onClose }) => {
   const balance: BigNumber = useBalance();
+
+  // --- test use ---
+  const contract = useFPDSContract('0x304D835e60737b8F952dc1b7F145eB018D026cB8'); // 0x304D835e60737b8F952dc1b7F145eB018D026cB8
+  useEffect(() => {
+    if (contract) {
+      contract.price().then(console.log);
+    }
+  }, [contract]);
 
   return (
     <Modal
