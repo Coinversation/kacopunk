@@ -143,7 +143,7 @@ const AnimateImageWarp = styled.div`
 `;
 
 const AnimateImage = ({ image, cap, glasse, clothe }) => {
-  return (
+  return image ? (
     <AnimateImageWarp>
       <div className="w-40 h-40 sm:w-60 sm:h-60 relative">
         <SwitchTransition mode="out-in">
@@ -177,7 +177,7 @@ const AnimateImage = ({ image, cap, glasse, clothe }) => {
         </SwitchTransition>
       </div>
     </AnimateImageWarp>
-  );
+  ) : null;
 };
 
 export default React.memo(AnimateImage, shallowEqual);

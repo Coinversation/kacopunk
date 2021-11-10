@@ -26,7 +26,7 @@ const App = (): JSX.Element => {
 
   return (
     <Layout>
-      <Suspense fallback="loading">
+      <Suspense fallback="">
         <Switch>
           <Route path="/">
             <Homepage />

@@ -19,7 +19,7 @@ const Header = ({ account, logout }) => {
   return (
     <HeaderWarp className="border-b border-borderColor">
       <Container className="content flex items-center justify-between">
-        <img src={logo} alt="logo" className="w-28" />
+        <img src={logo} alt="logo" className="w-40" />
         <div className="items-center space-x-6 hidden sm:flex">
           <div className="flex items-center space-x-4">
             <a href="https://discord.gg/YUTe8uCYft" target="_blank" rel="noreferrer">
