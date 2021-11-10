@@ -3,7 +3,7 @@ import { useWeb3React } from '@web3-react/core';
 
 export function useBalance() {
   const { account, library, chainId } = useWeb3React();
-  const [balance, setBalance] = useState();
+  const [balance, setBalance] = useState(0);
 
   useEffect((): any => {
     if (!!account && !!library) {
@@ -12,19 +12,20 @@ export function useBalance() {
       library
         .getBalance(account)
         .then((balance: any) => {
+          console.log('---ddddd', balance.toNumber());
           if (!stale) {
-            setBalance(balance);
+            setBalance(balance.toNumber());
           }
         })
         .catch(() => {
           if (!stale) {
-            setBalance(null);
+            setBalance(0);
           }
         });
 
       return () => {
         stale = true;
-        setBalance(undefined);
+        setBalance(0);
       };
     }
   }, [account, library, chainId]);

@@ -36,7 +36,7 @@ const Header = ({ account, logout }) => {
             </a>
           </div>
           <div className="flex items-center space-x-3">
-            <a href="https://www.kaco.finance/">
+            <a href="https://www.kaco.finance/" target="_blank" rel="noreferrer">
               <Button type="secondary">To DApp</Button>
             </a>
             {account ? (

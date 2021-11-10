@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { BigNumber } from '@ethersproject/bignumber';
-
 import { useBalance } from 'hooks/useBalance';
 import { useFPDSContract } from 'hooks/useContract';
 import Button from 'components/Button';
 import Modal from './index';
+import { BigNumber } from '@ethersproject/bignumber';
 
 const MintModalWarp = styled.div``;
 
@@ -19,13 +18,15 @@ const MintFooter = () => (
 );
 
 const MintModal = ({ visible, onClose }) => {
-  const balance: BigNumber = useBalance();
+  const balance: number = useBalance();
 
   // --- test use ---
-  const contract = useFPDSContract('0x304D835e60737b8F952dc1b7F145eB018D026cB8'); // 0x304D835e60737b8F952dc1b7F145eB018D026cB8
+  const contract = useFPDSContract('0x3bE50Adf25a2b4695EEa4BEC33784E64E365A8A0'); // 0x304D835e60737b8F952dc1b7F145eB018D026cB8
   useEffect(() => {
     if (contract) {
-      contract.price().then(console.log);
+      contract.price().then((v: BigNumber) => {
+        console.log(v.toString());
+      });
     }
   }, [contract]);
 
@@ -37,9 +38,7 @@ const MintModal = ({ visible, onClose }) => {
       footer={<MintFooter />}
     >
       <MintModalWarp>
-        <p className="flex justify-end text-secondaryTextColor text-xs mb-3">
-          Balance: {balance ? balance.toNumber() : 0}BNB
-        </p>
+        <p className="flex justify-end text-secondaryTextColor text-xs mb-3">Balance: {balance ? balance : 0}BNB</p>
         <div className="px-6 py-4 bg-bgColor rounded-xl input-container flex items-center">
           <input
             type="text"
