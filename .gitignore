@@ -126,3 +126,6 @@ dist
 
 template/
 template.json
+assets/img
+assets/output
+assets/karsier
