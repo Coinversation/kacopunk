@@ -12,7 +12,6 @@ export function useBalance() {
       library
         .getBalance(account)
         .then((balance: any) => {
-          console.log('---ddddd', balance.toNumber());
           if (!stale) {
             setBalance(balance.toNumber());
           }

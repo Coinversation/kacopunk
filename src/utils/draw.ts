@@ -30,11 +30,13 @@ function draw({ background, head, cap, glasse, clothe }) {
 
   async function drawImage(images) {
     for (let i = 0; i < images.length; i++) {
-      const result = await loadImage(images[i]);
-      if (result instanceof Error) {
+      try {
+        const result = await loadImage(images[i]);
+        ctx.drawImage(result.image, 0, 0, result.width, result.height, 0, 0, 480, 480);
+      } catch (err) {
+        console.error(err);
         console.error(images, i);
       }
-      ctx.drawImage(result.image, 0, 0, result.width, result.height, 0, 0, 480, 480);
     }
     return canvasEle.toDataURL('image/png');
   }
