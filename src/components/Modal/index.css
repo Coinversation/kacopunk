@@ -1,0 +1,176 @@
+.rc-dialog {
+  @apply w-auto m-0.5;
+  @apply relative;
+}
+
+.rc-dialog-wrap {
+  @apply fixed top-0 left-0 right-0 bottom-0 z-30;
+  @apply overflow-auto outline-none;
+  @apply flex;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+.rc-dialog-title {
+  @apply m-0;
+  @apply text-sm leading-5;
+}
+
+.rc-dialog-content {
+  @apply relative;
+  @apply bg-white bg-clip-padding;
+  @apply border-none rounded-xl;
+}
+
+.rc-dialog-close {
+  @apply absolute right-5 top-3;
+  @apply text-xl text-black leading-none;
+  @apply bg-transparent;
+  @apply border-0 opacity-20;
+  @apply cursor-pointer;
+}
+
+.rc-dialog-close-x::after {
+  content: '×';
+}
+
+.rc-dialog-close:hover,
+.rc-dialog-close:focus {
+  @apply opacity-100;
+}
+
+.rc-dialog-header {
+  @apply text-gray-600;
+  @apply py-3 px-5;
+}
+
+.rc-dialog-body {
+  @apply px-5;
+}
+
+.rc-dialog-footer {
+  @apply pt-5 pb-8 px-5;
+}
+
+.rc-dialog-zoom-enter,
+.rc-dialog-zoom-appear {
+  @apply opacity-0;
+
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+  animation-play-state: paused;
+  animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+}
+
+.rc-dialog-zoom-leave {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+  animation-play-state: paused;
+  animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.34);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rc-dialog-zoom-enter.rc-dialog-zoom-enter-active,
+  .rc-dialog-zoom-appear.rc-dialog-zoom-appear-active {
+    animation-name: rc-dialog-zoom-in;
+    animation-play-state: running;
+  }
+
+  .rc-dialog-zoom-leave.rc-dialog-zoom-leave-active {
+    animation-name: rc-dialog-zoom-out;
+    animation-play-state: running;
+  }
+}
+
+@keyframes rc-dialog-zoom-in {
+  0% {
+    @apply opacity-0;
+
+    transform: scale(0, 0);
+  }
+
+  100% {
+    @apply opacity-100;
+
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes rc-dialog-zoom-out {
+  0% {
+    transform: scale(1, 1);
+  }
+
+  100% {
+    @apply opacity-0;
+
+    transform: scale(0, 0);
+  }
+}
+
+@media (min-width: 768px) {
+  .rc-dialog {
+    width: 480px;
+    margin: auto;
+  }
+}
+
+.rc-dialog-mask {
+  @apply h-full;
+  @apply fixed top-0 right-0 left-0 bottom-0 z-20;
+  @apply bg-gray-800 bg-opacity-50;
+}
+
+.rc-dialog-mask-hidden {
+  @apply hidden;
+}
+
+.rc-dialog-fade-enter,
+.rc-dialog-fade-appear {
+  @apply opacity-0;
+
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+  animation-play-state: paused;
+  animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
+}
+
+.rc-dialog-fade-leave {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+  animation-play-state: paused;
+  animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rc-dialog-fade-enter.rc-dialog-fade-enter-active,
+  .rc-dialog-fade-appear.rc-dialog-fade-appear-active {
+    animation-name: rc-dialog-fade-in;
+    animation-play-state: running;
+  }
+
+  .rc-dialog-fade-leave.rc-dialog-fade-leave-active {
+    animation-name: rc-dialog-fade-out;
+    animation-play-state: running;
+  }
+}
+
+@keyframes rc-dialog-fade-in {
+  0% {
+    @apply opacity-0;
+  }
+
+  100% {
+    @apply opacity-100;
+  }
+}
+
+@keyframes rc-dialog-fade-out {
+  0% {
+    @apply opacity-100;
+  }
+
+  100% {
+    @apply opacity-0;
+  }
+}

@@ -94,7 +94,7 @@ const roadma = [
 const Roadmap = () => (
   <RoadmapWarp className="font-gotham">
     <Container>
-      <h1 className="text-5xl sm:text-6xl font-medium text-center mb-16 sm:mb-28">
+      <h1 className="text-5xl font-medium text-center mb-16 sm:mb-28">
         <span className="caption">Roadmap</span>
       </h1>
       <div className="m-auto">

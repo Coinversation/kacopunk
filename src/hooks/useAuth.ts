@@ -9,58 +9,43 @@ import {
   UserRejectedRequestError as UserRejectedRequestErrorWalletConnect,
   WalletConnectConnector,
 } from '@web3-react/walletconnect-connector';
-import { ConnectorNames, connectorLocalStorageKey } from '@kaco/uikit';
+import { connectorLocalStorageKey } from '@kaco/uikit';
 
-import { connectorsByName } from 'utils/web3React';
+import { injectedConnector } from 'utils/web3React';
 import { setupNetwork } from 'utils/wallet';
-import useToast from 'hooks/useToast';
 
 const useAuth = () => {
   const { activate, deactivate } = useWeb3React();
-  const { toastError } = useToast();
 
-  const login = useCallback(
-    (connectorID: ConnectorNames) => {
-      const connector = connectorsByName[connectorID];
-      if (connector) {
-        activate(connector, async (error: Error) => {
-          if (error instanceof UnsupportedChainIdError) {
-            const hasSetup = await setupNetwork();
-            if (hasSetup) {
-              activate(connector);
-            }
-          } else {
-            window.localStorage.removeItem(connectorLocalStorageKey);
-            if (error instanceof NoEthereumProviderError || error instanceof NoBscProviderError) {
-              toastError('Provider Error', 'No provider was found');
-            } else if (
-              error instanceof UserRejectedRequestErrorInjected ||
-              error instanceof UserRejectedRequestErrorWalletConnect
-            ) {
-              if (connector instanceof WalletConnectConnector) {
-                const walletConnector = connector as WalletConnectConnector;
-                walletConnector.walletConnectProvider = null;
-              }
-              toastError('Authorization Error', 'Please authorize to access your account');
-            } else {
-              toastError(error.name, error.message);
-            }
-          }
-        });
+  const login = () => {
+    activate(injectedConnector, async (error: Error) => {
+      if (error instanceof UnsupportedChainIdError) {
+        const hasSetup = await setupNetwork();
+        if (hasSetup) {
+          activate(injectedConnector);
+        }
       } else {
-        toastError('Unable to find connector', 'The connector config is wrong');
+        window.localStorage.removeItem(connectorLocalStorageKey);
+        if (error instanceof NoEthereumProviderError || error instanceof NoBscProviderError) {
+          console.error('Provider Error', 'No provider was found');
+        } else if (
+          error instanceof UserRejectedRequestErrorInjected ||
+          error instanceof UserRejectedRequestErrorWalletConnect
+        ) {
+          if (injectedConnector instanceof WalletConnectConnector) {
+            const walletConnector = injectedConnector as WalletConnectConnector;
+            walletConnector.walletConnectProvider = null;
+          }
+          console.error('Authorization Error', 'Please authorize to access your account');
+        } else {
+          console.error(error.name, error.message);
+        }
       }
-    },
-    [activate, toastError]
-  );
+    });
+  };
 
   const logout = useCallback(() => {
     deactivate();
-    // This localStorage key is set by @web3-react/walletconnect-connector
-    if (window.localStorage.getItem('walletconnect')) {
-      connectorsByName.walletconnect.close();
-      connectorsByName.walletconnect.walletConnectProvider = null;
-    }
   }, [deactivate]);
 
   return { login, logout };

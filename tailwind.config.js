@@ -10,11 +10,12 @@ module.exports = {
         textColor: '#263131',
         secondaryTextColor: '#5B6F6F',
         bgColor: '#F9F9F9',
+        borderColor: '#F6FBFB',
       },
       keyframes: {
         wiggle: {
-          '0%, 100%': { transform: 'rotate(-3deg)' },
-          '50%': { transform: 'rotate(3deg)' },
+          '0%, 100%': { transform: 'rotate(-1deg) translateY(0)' },
+          '50%': { transform: 'rotate(1deg) translateY(20px)' },
         },
       },
       animation: {

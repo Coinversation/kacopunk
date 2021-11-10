@@ -2,6 +2,10 @@ import { Button as ButtonComponent } from '@kaco/uikit';
 import styled from 'styled-components';
 
 const ButtonWarp = styled(ButtonComponent)`
+  width: ${({ block }) => {
+    if (block) return '100%';
+    return 'unset';
+  }};
   box-shadow: none;
   font-weight: inherit;
   background: ${({ type }) => {

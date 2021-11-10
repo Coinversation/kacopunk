@@ -1,26 +1,35 @@
 import React from 'react';
-import fecebook from './facebook_dark.png';
-import feishu from './feishu_dark.png';
-import twitter from './twitter_dark.png';
+import discord from '../Header/discord.svg';
+import twitter from '../Header/twitter.svg';
+import feishu from '../Header/feishu.svg';
+import github from '../Header/github.svg';
+import medium from '../Header/medium.svg';
 import styled from 'styled-components';
 
 const FooterWarp = styled.footer`
   padding: 80px 0;
-  img {
-    background: black;
-    padding: 10px;
-    border-radius: 12px;
-  }
 `;
 
 const Footer = () => (
   <FooterWarp>
     <div className="space-x-8 flex items-center justify-center">
-      <img src={twitter} alt="" />
-      <img src={feishu} alt="" />
-      <img src={fecebook} alt="" />
+      <a href="https://discord.gg/YUTe8uCYft" target="_blank" rel="noreferrer">
+        <img className="w-8" src={discord} alt="discord" />
+      </a>
+      <a href="https://twitter.com/KacOFinance" target="_blank" rel="noreferrer">
+        <img className="w-8" src={twitter} alt="twitter" />
+      </a>
+      <a href="https://t.me/coinversationofficial" target="_blank" rel="noreferrer">
+        <img className="w-8" src={feishu} alt="feishu" />
+      </a>
+      <a href="https://github.com/Coinversation" target="_blank" rel="noreferrer">
+        <img className="w-8" src={github} alt="github" />
+      </a>
+      <a href="https://coinversationofficial.medium.com/" target="_blank" rel="noreferrer">
+        <img className="w-8" src={medium} alt="medium" />
+      </a>
     </div>
-    <p className="mt-4 text-secondaryTextColor text-sm text-center font-gotham">Smart Contract</p>
+    <p className="mt-6 text-secondaryTextColor text-sm text-center font-gotham">Smart Contract</p>
   </FooterWarp>
 );
 
