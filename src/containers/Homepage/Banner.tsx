@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useWeb3React } from '@web3-react/core';
+import { BigNumber as BigNumberType } from '@ethersproject/bignumber';
 
 import { default as BannerComponent } from 'components/Homepage/Banner';
+import { CONTRACT_STATE } from 'config/constants/state';
 import { NFT } from 'containers/Homepage/slice';
+import { useKarsierContract } from 'hooks/useContract';
+import { CONTRACT_ADDRESS } from 'config';
+import { chainId } from 'config/constants/tokens';
 import draw from 'utils/draw';
 
 const oldNftMap = new Set();
@@ -78,7 +84,25 @@ const Banner = ({ nft, getImageByIndex }): JSX.Element => {
     };
   }, []);
 
-  return <BannerComponent nft={nft12} />;
+  // vip
+  const [vipSaleReserved, setVipSaleReserved] = useState<number>();
+  const [state, setState] = useState<CONTRACT_STATE>(CONTRACT_STATE.paused);
+  const contract = useKarsierContract(CONTRACT_ADDRESS[chainId]);
+  const { account } = useWeb3React();
+
+  useEffect(() => {
+    if (contract) {
+      contract.vipSaleReserved(account).then((reserved: BigNumberType) => {
+        setVipSaleReserved(reserved.toNumber());
+      });
+      // 状态
+      contract.saleState().then((state: BigNumberType) => {
+        setState(state.toNumber());
+      });
+    }
+  }, [contract]);
+
+  return <BannerComponent nft={nft12} state={state} isVip={vipSaleReserved > 0} />;
 };
 
 export default Banner;

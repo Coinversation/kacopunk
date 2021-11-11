@@ -45,6 +45,8 @@ import { default as clothe9 } from './clothes/9.png';
 import { default as clothe10 } from './clothes/10.png';
 import { default as clothe11 } from './clothes/11.png';
 
+export { default as rarity } from 'assets/json/karsier_rarity.json';
+
 export { default as head } from './head.png';
 
 export const backgrounds = [

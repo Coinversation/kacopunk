@@ -1,7 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { RootState } from 'stores';
-import { backgrounds, backgroundNames, caps, capNames, clothes, clotheNames, glasses, glasseNames } from './assets';
+import {
+  backgrounds,
+  backgroundNames,
+  caps,
+  capNames,
+  clothes,
+  clotheNames,
+  glasses,
+  glasseNames,
+  rarity,
+} from './assets';
 
 export enum NFT {
   caps = 'caps',
@@ -23,6 +33,7 @@ export interface homepageState {
     [NFT.glasses]: Array<string>;
     [NFT.clothes]: Array<string>;
   };
+  nftRarity: Object;
 }
 
 const initialState: homepageState = {
@@ -38,6 +49,7 @@ const initialState: homepageState = {
     [NFT.clothes]: clotheNames,
     [NFT.glasses]: glasseNames,
   },
+  nftRarity: rarity,
 };
 
 export const homepageSlice = createSlice({
@@ -48,5 +60,6 @@ export const homepageSlice = createSlice({
 
 export const selectNft = (state: RootState) => state.homepage.nft;
 export const selectNftName = (state: RootState) => state.homepage.nftName;
+export const selectNftRarity = (state: RootState) => state.homepage.nftRarity;
 
 export default homepageSlice.reducer;

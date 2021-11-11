@@ -4,12 +4,13 @@ import Tarsiers from 'components/Homepage/Tarsiers';
 import Roadmap from 'components/Homepage/Roadmap';
 import Faq from 'components/Homepage/Faq';
 import { useAppSelector } from 'hooks';
-import { selectNft, selectNftName, NFT } from 'containers/Homepage/slice';
+import { selectNft, selectNftName, selectNftRarity, NFT } from 'containers/Homepage/slice';
 import { head } from './assets';
 
 const Homepage = (): JSX.Element => {
   const nft = useAppSelector(selectNft);
   const nftName = useAppSelector(selectNftName);
+  const nftRarity = useAppSelector(selectNftRarity);
 
   const getPartByIndex = (type: NFT, index: number) => {
     return nft[type][index];
@@ -29,7 +30,7 @@ const Homepage = (): JSX.Element => {
     <>
       <Banner nft={nft} getImageByIndex={getImageByIndex} />
       <Different nft={nft} getPartByIndex={getPartByIndex} getImageByIndex={getImageByIndex} />
-      <Tarsiers nft={nft} nftName={nftName} />
+      <Tarsiers nft={nft} nftName={nftName} nftRarity={nftRarity} />
       <Roadmap />
       <Faq />
     </>

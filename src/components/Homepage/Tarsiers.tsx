@@ -33,10 +33,11 @@ const TarsiersWarp = styled.div`
   }
 `;
 
-const Tarsiers = ({ nft, nftName }) => {
+const Tarsiers = ({ nft, nftName, nftRarity }) => {
   const [tag, setTag] = useState(NFT.caps);
   const parts = useMemo(() => nft[tag], [tag, nft]);
   const partNames = useMemo(() => nftName[tag], [tag, nftName]);
+  const raritys = useMemo(() => nftRarity[tag], [tag, nftRarity]);
 
   return (
     <>
@@ -68,6 +69,7 @@ const Tarsiers = ({ nft, nftName }) => {
             {parts.map((part, i) => (
               <div key={i} className="mx-2 sm:mx-4 mb-4">
                 <img src={part} key={part} alt="" className="w-16 h-16 md:w-32 md:h-32 mb-2" />
+                <p>{raritys[partNames[i]]}%</p>
                 <p className="text-center text-textColor text-sm">{partNames[i]}</p>
               </div>
             ))}

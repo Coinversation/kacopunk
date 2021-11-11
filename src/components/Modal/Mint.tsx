@@ -6,27 +6,27 @@ import { formatUnits, parseEther } from '@ethersproject/units';
 import { useWeb3React } from '@web3-react/core';
 import BigNumber from 'bignumber.js';
 
-import { CONTRACT_ADDRESS } from 'config';
 import { CONTRACT_STATE } from 'config/constants/state';
 import { useKarsierContract } from 'hooks/useContract';
+import { CONTRACT_ADDRESS } from 'config';
+import { chainId } from 'config/constants/tokens';
 import Button from 'components/Button';
 import Modal from './index';
 import { useNotification } from 'hooks/useNotification';
-import { chainId } from 'config/constants/tokens';
 import { BASE_NETWORK_CONFIG } from 'config';
 
 const MintModalWarp = styled.div``;
 
-const MintFooter = ({ totalCost, balance, state, handleMint, notice }) => {
+const MintFooter = ({ totalCost, balance, state, handleMint, errorNotice }) => {
   const onClickComfirm = useCallback(() => {
     if (new BigNumber(balance).lt(totalCost)) {
-      notice({
+      errorNotice({
         content: `Insufficient balance`,
       });
       return;
     }
     if (state === CONTRACT_STATE.paused) {
-      notice({
+      errorNotice({
         content: 'The contract has not yet opened, so stay tuned!',
       });
       return;
@@ -56,7 +56,7 @@ const MintModal = ({ visible, onClose }) => {
   const [state, setState] = useState<CONTRACT_STATE>(CONTRACT_STATE.paused);
   const [totalCost, setTotalCost] = useState(0);
   const { account } = useWeb3React();
-  const [notice, holder] = useNotification();
+  const { notice, errorNotice, holder } = useNotification();
 
   useEffect(() => {
     if (contract && visible) {
@@ -131,7 +131,7 @@ const MintModal = ({ visible, onClose }) => {
         }, 4000);
       })
       .catch(err => {
-        notice({ content: err?.data?.message });
+        errorNotice({ content: err?.data?.message });
       });
   }, [totalCost, account]);
 
@@ -141,7 +141,13 @@ const MintModal = ({ visible, onClose }) => {
       onClose={onClose}
       title={<span className="text-primary text-xl">Buy NFT</span>}
       footer={
-        <MintFooter totalCost={totalCost} balance={balance} state={state} handleMint={handleMint} notice={notice} />
+        <MintFooter
+          totalCost={totalCost}
+          balance={balance}
+          state={state}
+          handleMint={handleMint}
+          errorNotice={errorNotice}
+        />
       }
     >
       <MintModalWarp>

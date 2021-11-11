@@ -8,3 +8,8 @@ export function getNotificationInstance(config) {
 
   return notificationInstance;
 }
+
+export function getNotificationHook(config) {
+  const notificationInstance = getNotificationInstance(config);
+  return notificationInstance.useNotification;
+}

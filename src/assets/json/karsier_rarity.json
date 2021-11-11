@@ -1,5 +1,5 @@
 {
-  "Backgrounds": {
+  "backgrounds": {
     "Desert": "0.03",
     "Green Planet": "0.03",
     "Blue Ink Color": "0.27",
@@ -13,7 +13,7 @@
     "Yellow Aurora": "0.27",
     "Cyan Aurora": "0.27"
   },
-  "Clothes": {
+  "clothes": {
     "Batsuit": "0.03",
     "Spacesuits": "0.03",
     "Cardigan-Dark Color": "1.33",
@@ -28,10 +28,10 @@
     "Musician": "10.80",
     "Purple Sweater": "10.80"
   },
-  "Header": {
+  "header": {
     "Header": "100.00"
   },
-  "Caps": {
+  "caps": {
     "Cowboy": "0.03",
     "Light Wave": "0.03",
     "Blue Light": "1.33",
@@ -46,7 +46,7 @@
     "Waves": "10.80",
     "Yellow Strip": "10.80"
   },
-  "Glasses": {
+  "glasses": {
     "Binoculars": "0.03",
     "Space Glasses": "0.03",
     "Miner’s Glasses": "1.33",
