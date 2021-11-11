@@ -91,10 +91,10 @@ const Banner = ({ nft, getImageByIndex }): JSX.Element => {
   const { account } = useWeb3React();
 
   const handleUpdateState = useCallback(() => {
-    contract.vipSaleReserved(account).then((reserved: BigNumberType) => {
+    contract?.vipSaleReserved(account).then((reserved: BigNumberType) => {
       setVipSaleReserved(reserved.toNumber());
     });
-    contract.totalSupply().then((total: BigNumberType) => {
+    contract?.totalSupply().then((total: BigNumberType) => {
       if (total.gte(3000)) {
         setState(CONTRACT_STATE.finish);
       }
@@ -111,7 +111,9 @@ const Banner = ({ nft, getImageByIndex }): JSX.Element => {
     }
   }, [contract]);
 
-  return <BannerComponent nft={nft12} state={state} canBuyFromVip={vipSaleReserved > 0} updateState={handleUpdateState} />;
+  return (
+    <BannerComponent nft={nft12} state={state} canBuyFromVip={vipSaleReserved > 0} updateState={handleUpdateState} />
+  );
 };
 
 export default Banner;
