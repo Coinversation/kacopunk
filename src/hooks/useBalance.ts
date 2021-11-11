@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useWeb3React } from '@web3-react/core';
+import { BigNumber as BigNumberType } from '@ethersproject/bignumber';
+import { formatUnits } from '@ethersproject/units';
 
 export function useBalance() {
   const { account, library, chainId } = useWeb3React();
@@ -11,9 +13,9 @@ export function useBalance() {
 
       library
         .getBalance(account)
-        .then((balance: any) => {
+        .then((balance: BigNumberType) => {
           if (!stale) {
-            setBalance(balance.toNumber());
+            setBalance(Number(formatUnits(balance)));
           }
         })
         .catch(() => {

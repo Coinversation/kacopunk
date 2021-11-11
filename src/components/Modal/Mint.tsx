@@ -2,13 +2,13 @@ import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useBalance } from 'hooks/useBalance';
 import { BigNumber as BigNumberType } from '@ethersproject/bignumber';
-import { formatUnits } from '@ethersproject/units';
+import { formatUnits, parseEther } from '@ethersproject/units';
 import { useWeb3React } from '@web3-react/core';
 import BigNumber from 'bignumber.js';
 
 import { CONTRACT_ADDRESS } from 'config';
 import { CONTRACT_STATE } from 'config/constants/state';
-import { useFPDSContract } from 'hooks/useContract';
+import { useKarsierContract } from 'hooks/useContract';
 import Button from 'components/Button';
 import Modal from './index';
 import { useNotification } from 'hooks/useNotification';
@@ -17,6 +17,9 @@ const MintModalWarp = styled.div``;
 
 const MintFooter = ({ totalCost, balance, state, handleMint, handlePreMint }) => {
   const onClickComfirm = useCallback(() => {
+    // todo ----
+    // 1. no account   return
+    // 2. max bug
     if (new BigNumber(balance).lt(totalCost)) return;
     if (state === CONTRACT_STATE.paused) return;
     if (state === CONTRACT_STATE.presale) {
@@ -41,7 +44,7 @@ const MintFooter = ({ totalCost, balance, state, handleMint, handlePreMint }) =>
 
 const MintModal = ({ visible, onClose }) => {
   const balance: number = useBalance();
-  const contract = useFPDSContract(CONTRACT_ADDRESS);
+  const contract = useKarsierContract(CONTRACT_ADDRESS);
   const [price, setPrice] = useState<number>(0);
   const [count, setCount] = useState<number>();
   const [state, setState] = useState<CONTRACT_STATE>(CONTRACT_STATE.paused);
@@ -63,7 +66,17 @@ const MintModal = ({ visible, onClose }) => {
   }, [contract, visible, setPrice]);
 
   const onClickMax = useCallback(() => {
-    setCount(new BigNumber(balance).div(price).toNumber());
+    // int
+    // < maxPurchase
+    let _count = new BigNumber(balance).dividedToIntegerBy(price).toNumber();
+    // maxPurchase
+    contract.maxPurchase().then((_maxPurchase: BigNumberType) => {
+      const maxPurchase = _maxPurchase.toNumber();
+      if (new BigNumber(_count).gte(maxPurchase)) {
+        _count = maxPurchase;
+      }
+      setCount(_count);
+    });
   }, [balance, price]);
 
   useEffect(() => {
@@ -73,24 +86,27 @@ const MintModal = ({ visible, onClose }) => {
   }, [state]);
 
   useEffect(() => {
+    console.log(count, price);
     setTotalCost(new BigNumber(count || 0).times(price || 0).toNumber());
   }, [count, price]);
 
   // 预售
   const handlePreMint = useCallback(() => {
+    console.log(totalCost, parseEther(`${totalCost}`).toString());
     contract.preSaleReserved(account).then((auth: BigNumberType) => {
       if (auth.gt(0)) {
         contract
-          .preSaleMint(account)
+          .preSaleMint(account, { from: account, value: parseEther(`${totalCost}`) })
           .then(result => {
             console.log(result);
           })
           .catch(err => {
-            notice({ content: err.data.message });
+            console.log(err);
+            notice({ content: err?.data?.message });
           });
       }
     });
-  }, [account]);
+  }, [totalCost, account]);
 
   // mint
   const handleMint = useCallback(() => {
@@ -129,7 +145,7 @@ const MintModal = ({ visible, onClose }) => {
             className="px-3 py-1.5 text-sm border-primary border-2 rounded-xl text-primary hover:opacity-70 active:opacity-60"
             onClick={onClickMax}
           >
-            Max{state}
+            Max
           </button>
         </div>
       </MintModalWarp>

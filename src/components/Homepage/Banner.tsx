@@ -39,7 +39,7 @@ const Banner = ({ nft }): JSX.Element => {
             </p>
             <div className="space-x-4 mt-10">
               <Button onClick={() => setVisible(true)}>Mint &gt;&gt;</Button>
-              <a href="https://www.kaco.finance/">
+              <a href="https://www.kaco.finance/nft/pools">
                 <Button Button type="outline">
                   View More &gt;&gt;
                 </Button>
