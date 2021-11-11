@@ -34,7 +34,7 @@ const BannerWarp = styled.div`
   }
 `;
 
-const Banner = ({ nft, state, isVip }): JSX.Element => {
+const Banner = ({ nft, state, canBuyFromVip, updateState }): JSX.Element => {
   const [visible, setVisible] = useState(false);
   return (
     <>
@@ -51,9 +51,14 @@ const Banner = ({ nft, state, isVip }): JSX.Element => {
               Tarsier is the smallest primate in the world. <br />
               Tarsier came to the blockchain world to create some fun for us. <br />
               Following the logic of evolution, the tarsier will be <br /> given some special functions in the future.
-              {isVip}
             </p>
-            {((isVip && state === CONTRACT_STATE.live) || null) && (
+            {(state === CONTRACT_STATE.paused || null) && (
+              <p className="text-lg mt-4 text-primary coming-soon">
+                <span>Comning Soon</span>
+                <span className="ml-4">1D：28H：36M：23S</span>
+              </p>
+            )}
+            {((state === CONTRACT_STATE.live && canBuyFromVip) || null) && (
               <p className="rounded-xl px-4 py-3 w-max text-sm mt-4 vip-bar">
                 <span className="caption">Thanks all of the DUDU Holders!!!</span>
                 <button className="px-2.5 py-1 rounded-xl ml-4 mint-now" onClick={() => setVisible(true)}>
@@ -61,15 +66,9 @@ const Banner = ({ nft, state, isVip }): JSX.Element => {
                 </button>
               </p>
             )}
-            {(state === CONTRACT_STATE.paused || null) && (
+            {(state === CONTRACT_STATE.finish || null) && (
               <p className="text-lg mt-4 text-primary coming-soon">
                 <span className="caption">NFT is sold out</span>
-              </p>
-            )}
-            {(state === CONTRACT_STATE.paused || null) && (
-              <p className="text-lg mt-4 text-primary coming-soon">
-                <span>Comning Soon</span>
-                <span className="ml-4">1D：28H：36M：23S</span>
               </p>
             )}
             <div className="space-x-4 mt-10">
@@ -90,7 +89,7 @@ const Banner = ({ nft, state, isVip }): JSX.Element => {
       </BannerWarp>
 
       {/* modal */}
-      <MintModal visible={visible} onClose={() => setVisible(false)}></MintModal>
+      <MintModal visible={visible} onClose={() => setVisible(false)} updateState={updateState}></MintModal>
     </>
   );
 };

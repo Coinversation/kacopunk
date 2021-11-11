@@ -47,7 +47,7 @@ const MintFooter = ({ totalCost, balance, state, handleMint, errorNotice }) => {
   );
 };
 
-const MintModal = ({ visible, onClose }) => {
+const MintModal = ({ visible, onClose, updateState }) => {
   const balance: number = useBalance();
   const contract = useKarsierContract(CONTRACT_ADDRESS[chainId]);
   const [price, setPrice] = useState<number>(0);
@@ -126,6 +126,7 @@ const MintModal = ({ visible, onClose }) => {
             </div>
           ),
         });
+        updateState();
         setTimeout(() => {
           onClose();
         }, 4000);

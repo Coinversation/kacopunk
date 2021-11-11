@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useWeb3React } from '@web3-react/core';
 import { BigNumber as BigNumberType } from '@ethersproject/bignumber';
 
@@ -84,17 +84,26 @@ const Banner = ({ nft, getImageByIndex }): JSX.Element => {
     };
   }, []);
 
-  // vip
+  // contract
   const [vipSaleReserved, setVipSaleReserved] = useState<number>();
   const [state, setState] = useState<CONTRACT_STATE>(CONTRACT_STATE.paused);
   const contract = useKarsierContract(CONTRACT_ADDRESS[chainId]);
   const { account } = useWeb3React();
 
+  const handleUpdateState = useCallback(() => {
+    contract.vipSaleReserved(account).then((reserved: BigNumberType) => {
+      setVipSaleReserved(reserved.toNumber());
+    });
+    contract.totalSupply().then((total: BigNumberType) => {
+      if (total.gte(3000)) {
+        setState(CONTRACT_STATE.finish);
+      }
+    });
+  }, []);
+
   useEffect(() => {
     if (contract) {
-      contract.vipSaleReserved(account).then((reserved: BigNumberType) => {
-        setVipSaleReserved(reserved.toNumber());
-      });
+      handleUpdateState();
       // 状态
       contract.saleState().then((state: BigNumberType) => {
         setState(state.toNumber());
@@ -102,7 +111,7 @@ const Banner = ({ nft, getImageByIndex }): JSX.Element => {
     }
   }, [contract]);
 
-  return <BannerComponent nft={nft12} state={state} isVip={vipSaleReserved > 0} />;
+  return <BannerComponent nft={nft12} state={state} canBuyFromVip={vipSaleReserved > 0} updateState={handleUpdateState} />;
 };
 
 export default Banner;
