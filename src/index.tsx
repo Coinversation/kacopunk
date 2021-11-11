@@ -7,6 +7,7 @@ import './index.css';
 import { PageLoading } from 'components/PageLoading';
 import reportWebVitals from './reportWebVitals';
 import Providers from './Providers';
+import 'rc-notification/assets/index.css';
 
 const listen = () => {
   if (document.readyState === 'complete') {

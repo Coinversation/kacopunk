@@ -72,5 +72,8 @@ export const BASE_NETWORK_CONFIG = {
 export const BASE_URL = 'https://www.kaco.finance';
 export const BASE_BSC_SCAN_URL = BASE_BSC_SCAN_URLS[ChainId.BINANCE_MAINNET];
 
-export const CONTRACT_ADDRESS = '0x3bE50Adf25a2b4695EEa4BEC33784E64E365A8A0';
+export const CONTRACT_ADDRESS = {
+  [ChainId.BINANCE_MAINNET]: '',
+  [ChainId.BINANCE_TESTNET]: '0x84735c6Ad1A6B98Cc3C549e28b8b30A702d0fAd8',
+};
 export const GAS_FEE = 3000;

@@ -12,30 +12,35 @@ import { useKarsierContract } from 'hooks/useContract';
 import Button from 'components/Button';
 import Modal from './index';
 import { useNotification } from 'hooks/useNotification';
+import { chainId } from 'config/constants/tokens';
+import { BASE_NETWORK_CONFIG } from 'config';
 
 const MintModalWarp = styled.div``;
 
-const MintFooter = ({ totalCost, balance, state, handleMint, handlePreMint }) => {
+const MintFooter = ({ totalCost, balance, state, handleMint, notice }) => {
   const onClickComfirm = useCallback(() => {
-    // todo ----
-    // 1. no account   return
-    // 2. max bug
-    if (new BigNumber(balance).lt(totalCost)) return;
-    if (state === CONTRACT_STATE.paused) return;
-    if (state === CONTRACT_STATE.presale) {
-      return handlePreMint();
+    if (new BigNumber(balance).lt(totalCost)) {
+      notice({
+        content: `Insufficient balance`,
+      });
+      return;
+    }
+    if (state === CONTRACT_STATE.paused) {
+      notice({
+        content: 'The contract has not yet opened, so stay tuned!',
+      });
+      return;
     }
     if (state === CONTRACT_STATE.live) {
       return handleMint();
     }
-  }, [state, balance, handlePreMint, handleMint]);
+  }, [state, balance, handleMint]);
 
   return (
     <div className="flex flex-col items-center justify-center">
       <p className="text-center text-xs mb-4 text-secondaryTextColor">Total Cost: {totalCost} BNB</p>
       <Button type="primary" block onClick={onClickComfirm}>
         {(state === CONTRACT_STATE.paused || null) && "Can't Mint"}
-        {(state === CONTRACT_STATE.presale || null) && 'Pre Mint'}
         {(state === CONTRACT_STATE.live || null) && 'Confirm'}
       </Button>
     </div>
@@ -44,9 +49,10 @@ const MintFooter = ({ totalCost, balance, state, handleMint, handlePreMint }) =>
 
 const MintModal = ({ visible, onClose }) => {
   const balance: number = useBalance();
-  const contract = useKarsierContract(CONTRACT_ADDRESS);
+  const contract = useKarsierContract(CONTRACT_ADDRESS[chainId]);
   const [price, setPrice] = useState<number>(0);
   const [count, setCount] = useState<number>();
+  const [vipSaleReserved, setVipSaleReserved] = useState<number>();
   const [state, setState] = useState<CONTRACT_STATE>(CONTRACT_STATE.paused);
   const [totalCost, setTotalCost] = useState(0);
   const { account } = useWeb3React();
@@ -61,6 +67,9 @@ const MintModal = ({ visible, onClose }) => {
       // 状态
       contract.saleState().then((state: BigNumberType) => {
         setState(state.toNumber());
+      });
+      contract.vipSaleReserved(account).then((reserved: BigNumberType) => {
+        setVipSaleReserved(reserved.toNumber());
       });
     }
   }, [contract, visible, setPrice]);
@@ -80,40 +89,51 @@ const MintModal = ({ visible, onClose }) => {
   }, [balance, price]);
 
   useEffect(() => {
-    if (state === CONTRACT_STATE.presale) {
-      setCount(1);
+    let _cost = 0;
+    let _count = count;
+    if (vipSaleReserved > 0) {
+      _cost += new BigNumber(vipSaleReserved || 0)
+        .times(price || 0)
+        .times(1 / 2)
+        .toNumber();
+      _count -= vipSaleReserved;
     }
-  }, [state]);
-
-  useEffect(() => {
-    console.log(count, price);
-    setTotalCost(new BigNumber(count || 0).times(price || 0).toNumber());
+    _cost = new BigNumber(_count)
+      .times(price || 0)
+      .plus(_cost || 0)
+      .toNumber();
+    setTotalCost(_cost);
   }, [count, price]);
-
-  // 预售
-  const handlePreMint = useCallback(() => {
-    console.log(totalCost, parseEther(`${totalCost}`).toString());
-    contract.preSaleReserved(account).then((auth: BigNumberType) => {
-      if (auth.gt(0)) {
-        contract
-          .preSaleMint(account, { from: account, value: parseEther(`${totalCost}`) })
-          .then(result => {
-            console.log(result);
-          })
-          .catch(err => {
-            console.log(err);
-            notice({ content: err?.data?.message });
-          });
-      }
-    });
-  }, [totalCost, account]);
 
   // mint
   const handleMint = useCallback(() => {
-    contract.mint(account, count).then(result => {
-      console.log(result);
-    });
-  }, [count, account]);
+    contract
+      .mint(account, count, { from: account, value: parseEther(`${totalCost}`) })
+      .then(result => {
+        // 0x014eecb78d4ce4eced79b033b7fbe89af05fd59ec27c6b2eb7c1c80fdbcf15cb
+        notice({
+          duration: 4,
+          content: (
+            <div>
+              <h3>mint successful!</h3>
+              <a
+                href={`${[BASE_NETWORK_CONFIG[`${chainId}`].blockExplorerUrls]}/tx/${result}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Click me, Watch the progress
+              </a>
+            </div>
+          ),
+        });
+        setTimeout(() => {
+          onClose();
+        }, 4000);
+      })
+      .catch(err => {
+        notice({ content: err?.data?.message });
+      });
+  }, [totalCost, account]);
 
   return (
     <Modal
@@ -121,20 +141,13 @@ const MintModal = ({ visible, onClose }) => {
       onClose={onClose}
       title={<span className="text-primary text-xl">Buy NFT</span>}
       footer={
-        <MintFooter
-          totalCost={totalCost}
-          balance={balance}
-          state={state}
-          handleMint={handleMint}
-          handlePreMint={handlePreMint}
-        />
+        <MintFooter totalCost={totalCost} balance={balance} state={state} handleMint={handleMint} notice={notice} />
       }
     >
       <MintModalWarp>
         <p className="flex justify-end text-secondaryTextColor text-xs mb-3">Balance: {balance ? balance : 0}BNB</p>
         <div className="px-6 py-4 bg-bgColor rounded-xl input-container flex items-center">
           <input
-            disabled={state === CONTRACT_STATE.presale}
             type="text"
             placeholder="Please enter the Amount"
             className="outline-none border-none bg-transparent flex-auto text-secondaryTextColor"

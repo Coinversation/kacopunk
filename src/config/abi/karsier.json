@@ -129,7 +129,7 @@
   },
   {
     "inputs": [],
-    "name": "MAX_Karsiar",
+    "name": "MAX_Karsier",
     "outputs": [
       {
         "internalType": "uint256",
@@ -360,38 +360,6 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "to",
-        "type": "address"
-      }
-    ],
-    "name": "preSaleMint",
-    "outputs": [],
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "preSaleReserved",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [],
     "name": "price",
     "outputs": [
@@ -509,19 +477,6 @@
   {
     "inputs": [
       {
-        "internalType": "address[]",
-        "name": "_a",
-        "type": "address[]"
-      }
-    ],
-    "name": "setPreSaleWhitelist",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
         "internalType": "uint256",
         "name": "_price",
         "type": "uint256"
@@ -541,6 +496,19 @@
       }
     ],
     "name": "setSaleState",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address[]",
+        "name": "_a",
+        "type": "address[]"
+      }
+    ],
+    "name": "setVipSaleWhitelist",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -624,7 +592,7 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "tokenId",
+        "name": "_tokenId",
         "type": "uint256"
       }
     ],
@@ -686,6 +654,25 @@
     "name": "transferOwnership",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "vipSaleReserved",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
