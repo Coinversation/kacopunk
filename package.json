@@ -35,7 +35,8 @@
     "test:coverage": "react-scripts test --coverage",
     "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
     "test:node": "react-scripts test --env=node",
-    "lint-fix": "eslint --fix --ext .ts,.tsx src/"
+    "lint-fix": "eslint --fix --ext .ts,.tsx src/",
+    "rarity_cal": "node ./assets/script/rarity_cal"
   },
   "eslintConfig": {
     "extends": [
