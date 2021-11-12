@@ -34,7 +34,7 @@ const BannerWarp = styled.div`
   }
 `;
 
-const Banner = ({ nft, state, canBuyFromVip, updateState }): JSX.Element => {
+const Banner = ({ contract, nft, state, canBuyFromVip, updateState }): JSX.Element => {
   const [visible, setVisible] = useState(false);
   return (
     <>
@@ -89,7 +89,12 @@ const Banner = ({ nft, state, canBuyFromVip, updateState }): JSX.Element => {
       </BannerWarp>
 
       {/* modal */}
-      <MintModal visible={visible} onClose={() => setVisible(false)} updateState={updateState}></MintModal>
+      <MintModal
+        contract={contract}
+        visible={visible}
+        onClose={() => setVisible(false)}
+        updateState={updateState}
+      ></MintModal>
     </>
   );
 };

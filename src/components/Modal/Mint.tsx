@@ -7,8 +7,6 @@ import { useWeb3React } from '@web3-react/core';
 import BigNumber from 'bignumber.js';
 
 import { CONTRACT_STATE } from 'config/constants/state';
-import { useKarsierContract } from 'hooks/useContract';
-import { CONTRACT_ADDRESS } from 'config';
 import { chainId } from 'config/constants/tokens';
 import Button from 'components/Button';
 import Modal from './index';
@@ -17,7 +15,7 @@ import { BASE_NETWORK_CONFIG } from 'config';
 
 const MintModalWarp = styled.div``;
 
-const MintFooter = ({ totalCost, balance, state, handleMint, errorNotice }) => {
+const MintFooter = ({ contract, totalCost, balance, state, handleMint, errorNotice }) => {
   const onClickComfirm = useCallback(() => {
     if (new BigNumber(balance).lt(totalCost)) {
       errorNotice({
@@ -47,9 +45,8 @@ const MintFooter = ({ totalCost, balance, state, handleMint, errorNotice }) => {
   );
 };
 
-const MintModal = ({ visible, onClose, updateState }) => {
+const MintModal = ({ contract, visible, onClose, updateState }) => {
   const balance: number = useBalance();
-  const contract = useKarsierContract(CONTRACT_ADDRESS[chainId]);
   const [price, setPrice] = useState<number>(0);
   const [count, setCount] = useState<number>();
   const [vipSaleReserved, setVipSaleReserved] = useState<number>();
@@ -143,6 +140,7 @@ const MintModal = ({ visible, onClose, updateState }) => {
       title={<span className="text-primary text-xl">Buy NFT</span>}
       footer={
         <MintFooter
+          contract={contract}
           totalCost={totalCost}
           balance={balance}
           state={state}

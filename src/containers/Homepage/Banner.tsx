@@ -112,7 +112,13 @@ const Banner = ({ nft, getImageByIndex }): JSX.Element => {
   }, [contract]);
 
   return (
-    <BannerComponent nft={nft12} state={state} canBuyFromVip={vipSaleReserved > 0} updateState={handleUpdateState} />
+    <BannerComponent
+      contract={contract}
+      nft={nft12}
+      state={state}
+      canBuyFromVip={vipSaleReserved > 0}
+      updateState={handleUpdateState}
+    />
   );
 };
 
