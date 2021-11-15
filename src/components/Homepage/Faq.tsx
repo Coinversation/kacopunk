@@ -12,15 +12,15 @@ const faqContents = [
     ],
   },
   {
-    title: 'Will there have limited edition of Tarsier?',
+    title: 'Will there have limited edition of Karsier?',
     sections: [
-      'Yes! There will be 30 limited editions Tarsier in total. And, one limited edition will appear for every 100 sales.',
+      'Yes! There will be 30 limited editions Karsier in total. And, one limited edition will appear for every 100 sales.',
     ],
   },
   {
-    title: 'Where can I trade the Tarsier after minting?',
+    title: 'Where can I trade the Karsier after minting?',
     sections: [
-      'You can choose to trade Tarsier on Kaco NFT market, Treasureland or any platform that supports BEP-721. At the same time, the Kaco NFT exchange market will establish a brand new KNFT and KAC trading pool for Tarsier, which will be different from the kkac&kac pool.',
+      'You can choose to trade Karsier on Kaco NFT market, Treasureland or any platform that supports BEP-721. At the same time, the Kaco NFT exchange market will establish a brand new KNFT and KAC trading pool for Karsier, which will be different from the kkac&kac pool.',
     ],
   },
 ];
@@ -53,7 +53,7 @@ const Faq = () => (
       <div className="flex space-x-0 md:space-x-8 mb-10 md:mb-20 relative flex-col md:flex-row">
         <div className="border-primary border-l-4 border-b-4 rounded-xl leftQ p-10 bg-white">
           <h3 className="text-primary text-2xl relative z-10 mb-4">How much to mint?</h3>
-          <p className="text-secondaryTextColor relative text-sm z-10">Tarsier is priced at a flat rate (0.1BNB).</p>
+          <p className="text-secondaryTextColor relative text-sm z-10">Karsier is priced at a flat rate (0.1BNB).</p>
         </div>
         <div className="border-primary border-l-4 border-b-4 rounded-xl p-10 bg-white mt-4 md:mt-0">
           <h3 className="text-primary text-2xl relative z-10 mb-4">Tokenomics:</h3>

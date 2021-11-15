@@ -76,18 +76,18 @@ const Item = ({ content, isEnd }) => (
 
 const roadma = [
   {
-    title: 'Launch Tarsier',
-    texts: ['Tarsier will launch recently. Please stay tune with our website and official social media.'],
+    title: 'Launch Karsier',
+    texts: ['Karsier will launch recently. Please stay tune with our website and official social media.'],
   },
   {
     title: 'Live on NFT Marketplace',
     texts: [
-      'Tarsier will live on Kaco NFT market, Treasureland or any platform that sup-ports BEP-721 after launching.',
+      'Karsier will live on Kaco NFT market, Treasureland or any platform that sup-ports BEP-721 after launching.',
     ],
   },
   {
     title: 'Build up a NFT Foundation',
-    texts: ['The Official will establish an NFT foundation to support the development of Tarsier.'],
+    texts: ['The Official will establish an NFT foundation to support the development of Karsier.'],
   },
 ];
 

@@ -5,7 +5,7 @@ import Container from 'components/Container';
 import { NFT } from 'containers/Homepage/slice';
 import tag_selected from './assets/tag_selected.png';
 
-const TarsiersWarp = styled.div`
+const KarsiersWarp = styled.div`
   .caption {
     background: linear-gradient(90deg, #f59fee 0%, #b8c1c0 25%, #65c0e0 50%, #f59fee 75%, #81c1d9 100%);
     -webkit-background-clip: text;
@@ -33,7 +33,7 @@ const TarsiersWarp = styled.div`
   }
 `;
 
-const Tarsiers = ({ nft, nftName, nftRarity }) => {
+const Karsiers = ({ nft, nftName, nftRarity }) => {
   const [tag, setTag] = useState(NFT.caps);
   const parts = useMemo(() => nft[tag], [tag, nft]);
   const partNames = useMemo(() => nftName[tag], [tag, nftName]);
@@ -41,15 +41,15 @@ const Tarsiers = ({ nft, nftName, nftRarity }) => {
 
   return (
     <>
-      <TarsiersWarp className="font-gotham">
+      <KarsiersWarp className="font-gotham">
         <Container className="content text-center">
           <h1 className="text-5xl mb-6">
             <span className="caption">What are karsiers made of</span>
           </h1>
           <p className="text-sm text-secondaryTextColor leading-loose">
-            Tarsier is made up with a variety of interesting hair, glasses, hats,
+            Karsier is made up with a variety of interesting hair, glasses, hats,
             <br />
-            outfits and background features. Each Tarsier is a unique NFT asset！
+            outfits and background features. Each Karsier is a unique NFT asset！
           </p>
           <div className="flex items-center justify-center space-x-2 sm:space-x-4 mt-10 text-textColor text-xl sm:text-2xl">
             {Object.values(NFT).map((item, index) => (
@@ -75,9 +75,9 @@ const Tarsiers = ({ nft, nftName, nftRarity }) => {
             ))}
           </div>
         </Container>
-      </TarsiersWarp>
+      </KarsiersWarp>
     </>
   );
 };
 
-export default Tarsiers;
+export default Karsiers;

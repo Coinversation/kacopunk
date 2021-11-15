@@ -44,13 +44,13 @@ const Banner = ({ contract, nft, state, canBuyFromVip, updateState }): JSX.Eleme
             <h1 className="text-5xl mb-6">
               <span className="caption">
                 What is
-                <br /> Tarsier?
+                <br /> Karsier?
               </span>
             </h1>
             <p className="text-sm text-secondaryTextColor leading-loose">
-              Tarsier is the smallest primate in the world. <br />
-              Tarsier came to the blockchain world to create some fun for us. <br />
-              Following the logic of evolution, the tarsier will be <br /> given some special functions in the future.
+              Karsier is the smallest primate in the world. <br />
+              Karsier came to the blockchain world to create some fun for us. <br />
+              Following the logic of evolution, the karsier will be <br /> given some special functions in the future.
             </p>
             {(state === CONTRACT_STATE.paused || null) && (
               <p className="text-lg mt-4 text-primary coming-soon">

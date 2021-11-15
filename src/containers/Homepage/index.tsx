@@ -1,6 +1,6 @@
 import Banner from './Banner';
 import Different from './Different';
-import Tarsiers from 'components/Homepage/Tarsiers';
+import Karsiers from 'components/Homepage/Karsiers';
 import Roadmap from 'components/Homepage/Roadmap';
 import Faq from 'components/Homepage/Faq';
 import { useAppSelector } from 'hooks';
@@ -30,7 +30,7 @@ const Homepage = (): JSX.Element => {
     <>
       <Banner nft={nft} getImageByIndex={getImageByIndex} />
       <Different nft={nft} getPartByIndex={getPartByIndex} getImageByIndex={getImageByIndex} />
-      <Tarsiers nft={nft} nftName={nftName} nftRarity={nftRarity} />
+      <Karsiers nft={nft} nftName={nftName} nftRarity={nftRarity} />
       <Roadmap />
       <Faq />
     </>

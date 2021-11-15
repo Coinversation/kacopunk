@@ -29,13 +29,13 @@ const Different = ({ image, cap, glasse, clothe }) => (
       <div>
         <h1 className="text-5xl mb-6">
           <span className="caption">
-            Why Tarsier <br /> different?
+            Why Karsier <br /> different?
           </span>
         </h1>
         <p className="text-secondaryTextColor leading-loose text-sm">
-          The Tarsier collection is programmatically, randomly generated
+          The Karsier collection is programmatically, randomly generated
           <br />
-          on the blockchain. Therefore, every single Tarsier is unique
+          on the blockchain. Therefore, every single Karsier is unique
           <br />
           in the world. The total issuance of Tariser is 9,000, of which
           <br />
