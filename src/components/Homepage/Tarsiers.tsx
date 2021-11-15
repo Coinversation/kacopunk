@@ -44,7 +44,7 @@ const Tarsiers = ({ nft, nftName, nftRarity }) => {
       <TarsiersWarp className="font-gotham">
         <Container className="content text-center">
           <h1 className="text-5xl mb-6">
-            <span className="caption">What are tarsiers made of</span>
+            <span className="caption">What are karsiers made of</span>
           </h1>
           <p className="text-sm text-secondaryTextColor leading-loose">
             Tarsier is made up with a variety of interesting hair, glasses, hats,
@@ -55,7 +55,7 @@ const Tarsiers = ({ nft, nftName, nftRarity }) => {
             {Object.values(NFT).map((item, index) => (
               <span
                 className={`
-              ${tag === item ? 'text-primary' : ''} 
+              ${tag === item ? 'text-primary' : ''}
               cursor-pointer text-lg space-x-2 sm:space-x-4`}
                 key={item}
                 onClick={() => setTag(item)}
