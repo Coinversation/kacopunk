@@ -54,8 +54,7 @@ const Banner = ({ contract, nft, state, canBuyFromVip, updateState }): JSX.Eleme
             </p>
             {(state === CONTRACT_STATE.paused || null) && (
               <p className="text-lg mt-4 text-primary coming-soon">
-                <span>Comning Soon</span>
-                <span className="ml-4">1D：28H：36M：23S</span>
+                <span>Comming Soon</span>
               </p>
             )}
             {((state === CONTRACT_STATE.live && canBuyFromVip) || null) && (
