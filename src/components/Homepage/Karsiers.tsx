@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Container from 'components/Container';
 import { NFT } from 'containers/Homepage/slice';
-import tag_selected from './assets/tag_selected.png';
+import tag_selected from './assets/tag_selected.svg';
 
 const KarsiersWarp = styled.div`
   .caption {
