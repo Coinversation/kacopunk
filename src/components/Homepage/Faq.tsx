@@ -6,21 +6,19 @@ import faq_costar from './assets/faq_costar.png';
 
 const faqContents = [
   {
-    title: 'How do I get involved?',
+    title: 'How can I participate?',
     sections: [
-      'You could head over to our website and mint it by yourself. Also, you could head over to the Telegram, jump in on the conversation and let us know your ideas!',
+      'You can visit our website and mint by yourself. In addition, you can go to Telegram, join the conversation and let us know what you think!',
     ],
   },
   {
-    title: 'Will there have limited edition of Karsier?',
-    sections: [
-      'Yes! There will be 30 limited editions Karsier in total. And, one limited edition will appear for every 100 sales.',
-    ],
+    title: 'Will there have rare Tarsiers?',
+    sections: ['Yes! There will be 2 rare Tarsier in total. Moreover, all NFTs will be randomly forged.'],
   },
   {
-    title: 'Where can I trade the Karsier after minting?',
+    title: 'Where can I trade Tarsier after casting?',
     sections: [
-      'You can choose to trade Karsier on Kaco NFT market, Treasureland or any platform that supports BEP-721. At the same time, the Kaco NFT exchange market will establish a brand new KNFT and KAC trading pool for Karsier, which will be different from the kkac&kac pool.',
+      'You can choose to trade Tarsier on Kaco NFT Market, Treasureland or any platform that supports BEP-721. At the same time, the Kaco NFT trading market will establish a new KNFT and KAC trading pool for Tarsier, which is different from the kkac&kac pool.',
     ],
   },
 ];
@@ -52,14 +50,13 @@ const Faq = () => (
       </h1>
       <div className="flex space-x-0 md:space-x-8 mb-10 md:mb-20 relative flex-col md:flex-row">
         <div className="border-primary border-l-4 border-b-4 rounded-xl leftQ p-10 bg-white">
-          <h3 className="text-primary text-2xl relative z-10 mb-4">How much to mint?</h3>
-          <p className="text-secondaryTextColor relative text-sm z-10">Karsier is priced at a flat rate (0.1BNB).</p>
+          <h3 className="text-primary text-2xl relative z-10 mb-4">How much is the minting?</h3>
+          <p className="text-secondaryTextColor relative text-sm z-10">Stay tuned</p>
         </div>
         <div className="border-primary border-l-4 border-b-4 rounded-xl p-10 bg-white mt-4 md:mt-0">
           <h3 className="text-primary text-2xl relative z-10 mb-4">Tokenomics:</h3>
           <p className="text-secondaryTextColor relative text-sm z-10">
-            The official spends 10% of the minting fee to purchase the rare NFT (30 in total), they are distributed in
-            100, 200, 300 numbers.5% minting fee will be used to sweep NFTs in the market.
+            5% minting fee will be used to buy back the NFT on the market.
           </p>
         </div>
       </div>
